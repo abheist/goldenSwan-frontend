@@ -1,0 +1,27 @@
+{
+	"extends": "react-app",
+	"plugins": ["prettier"],
+	"rules": {
+		"prettier/prettier": [
+			"error",
+			{
+				"singleQuote": true,
+				"printWidth": 80,
+				"useTabs": true,
+				"tabWidth": 4
+			}
+		],
+		"no-restricted-imports": [
+			"error",
+			{
+				"paths": [
+					{
+						"name": "styled-components",
+						"message": "Please import from styled-components/macro."
+					}
+				],
+				"patterns": ["!styled-components/macro"]
+			}
+		]
+	}
+}
