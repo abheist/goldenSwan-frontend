@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { COLORS } from './ThemeConstants';
 
 export const FlexItem = styled.div`
+	box-sizing: border-box;
 	${props => props.direction && `flex-direction: ${props.direction};`}
 	${props => props.justify && `justify-content: ${props.justify};`}
 	${props => props.content && `align-content: ${props.content};`}
