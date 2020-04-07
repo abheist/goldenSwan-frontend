@@ -4,6 +4,7 @@ import {
 	Tooltip as ReakitTooltip,
 	TooltipReference
 } from 'reakit/Tooltip';
+// eslint-disable-next-line no-unused-vars
 import styled from 'styled-components/macro';
 import { COLOR_LIGHT, COLOR_DARK } from '../styles/ThemeConstants';
 

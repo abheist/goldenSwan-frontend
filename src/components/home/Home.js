@@ -1,7 +1,12 @@
 import React from 'react';
+import WriteBox from '../writeBox/writeBox';
 
 function Home() {
-	return <div>Home</div>;
+	return (
+		<>
+			<WriteBox />
+		</>
+	);
 }
 
 export default Home;

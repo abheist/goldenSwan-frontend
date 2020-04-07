@@ -24,7 +24,7 @@ function Header() {
 				<FlexItem margin={{ left: 35 }}>
 					<Link to="/profile">
 						<Tooltip title="Profile">
-							<Avatar background="https://placekitten.com/30/30" />
+							<Avatar background="https://placekitten.com/60/60" />
 						</Tooltip>
 					</Link>
 				</FlexItem>
