@@ -15,7 +15,7 @@ import styled from 'styled-components/macro';
 function LoginSignupPage(props) {
 	let { path } = useRouteMatch();
 	return (
-		<Flex fill="true">
+		<Flex fill="true" background={COLOR_LIGHT}>
 			<Flex
 				flex="1"
 				background={COLOR_PRIMARY}

@@ -8,11 +8,12 @@ import {
 	FONT_MONO_SPACED,
 	COLOR_PRIMARY_DARK,
 	COLOR_PRIMARY,
+	COLOR_LIGHT_GRAY,
 	COLOR_PRIMARY_DARKER
 } from './ThemeConstants';
 
 export const backgroundColor = theme('mode', {
-	light: COLOR_LIGHT,
+	light: COLOR_LIGHT_GRAY,
 	dark: COLOR_DARK
 });
 

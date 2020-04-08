@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 export const COLOR_LIGHT = '#ffffff';
 export const COLOR_DARK = '#1A202C';
 export const COLOR_BACKGROUND = '#f3f3f4';
+export const COLOR_LIGHT_GRAY = '#f1f2f5';
 export const COLOR_GRAY = '#dcdcdc';
 
 export const COLOR_PRIMARY_LIGHT = '#ebf1ff';
