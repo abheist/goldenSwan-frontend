@@ -1,6 +1,6 @@
 import { Editor, EditorState } from 'draft-js';
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
+
 import styled from 'styled-components/macro';
 import { COLOR_LIGHT } from '../styles/ThemeConstants';
 
