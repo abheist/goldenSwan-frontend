@@ -74,7 +74,7 @@ const Theme = ({ children }) => (
 );
 
 Theme.propTypes = {
-	children: PropTypes.element.isRequired,
+	children: PropTypes.array.isRequired,
 };
 
 export default Theme;
