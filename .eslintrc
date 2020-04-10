@@ -106,6 +106,8 @@
 		"prettier/prettier": [
 			"error",
 			{
+				"useTabs": true,
+				"tabWidth": 4,
 				"trailingComma": "es5",
 				"singleQuote": true,
 				"printWidth": 80
