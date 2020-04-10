@@ -1,14 +1,18 @@
-import { Editor, EditorState } from 'draft-js';
-import React from 'react';
+import { Editor, EditorState, RichUtils } from 'draft-js';
+import React, { useState } from 'react';
 
 // eslint-disable-next-line no-unused-vars
-import { css } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { COLOR_LIGHT } from '../styles/ThemeConstants';
 
 function WriteUp() {
-	const [editorState, setEditorState] = React.useState(
-		EditorState.createEmpty()
-	);
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+	const handleKeyCommand = (command, localEditorState) => {
+		const newState = RichUtils.handleKeyCommand(localEditorState, command);
+		if (newState) setEditorState(newState);
+	};
+
 	return (
 		<div
 			css={`
@@ -18,7 +22,11 @@ function WriteUp() {
 				min-height: 500px;
 			`}
 		>
-			<Editor editorState={editorState} onChange={setEditorState} />
+			<Editor
+				editorState={editorState}
+				onChange={setEditorState}
+				handleKeyCommand={handleKeyCommand}
+			/>
 		</div>
 	);
 }
