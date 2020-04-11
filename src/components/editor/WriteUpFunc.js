@@ -19,7 +19,7 @@ import './Draft.css';
 // -------------- IMPORTANT ------------------------------
 function WriteUpFunc(props) {
 	const content = window.localStorage.getItem('content');
-	console.log(content);
+
 	const [editorState, setEditorState] = useState(
 		content
 			? EditorState.createEmpty()
@@ -27,6 +27,7 @@ function WriteUpFunc(props) {
 	);
 
 	const editor = useRef(null);
+
 	const focusEditor = () => {
 		if (editor) editor.current.focus();
 	};
@@ -35,38 +36,34 @@ function WriteUpFunc(props) {
 		focusEditor();
 	}, []);
 
-	const saveContent = () => {
+	useEffect(() => {
 		window.localStorage.setItem(
 			'content',
 			JSON.stringify(
 				convertToRaw(editorState.getCurrentContent(editorState))
 			)
 		);
-	};
-
-	const onChange = state => {
-		setEditorState(state);
-		saveContent();
-	};
+	}, [editorState]);
 
 	const handleKeyCommand = command => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
 		if (newState) {
-			onChange(newState);
+			setEditorState(newState);
 			return true;
 		}
 		return false;
 	};
 
 	const toggleBlockType = blockType => {
-		onChange(RichUtils.toggleBlockType(editorState, blockType));
+		setEditorState(RichUtils.toggleBlockType(editorState, blockType));
 	};
 
 	const toggleInlineStyle = inlineStyle => {
-		onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+		setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
 	};
 
 	let className = 'RichEditor-editor';
+
 	const contentState = editorState.getCurrentContent();
 	if (!contentState.hasText()) {
 		if (
@@ -78,6 +75,8 @@ function WriteUpFunc(props) {
 			className += ' RichEditor-hidePlaceholder';
 		}
 	}
+
+	if (!editorState) return <div>Content Loading...</div>;
 
 	return (
 		<div className="RichEditor-root">
@@ -95,7 +94,7 @@ function WriteUpFunc(props) {
 					customStyleMap={styleMap}
 					editorState={editorState}
 					handleKeyCommand={handleKeyCommand}
-					onChange={onChange}
+					onChange={setEditorState}
 					ref={editor}
 					placeholder="Tell a story..."
 					spellCheck
