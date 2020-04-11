@@ -5,6 +5,7 @@ import Home from '../home/Home';
 import Profile from '../profile/Profile';
 import { Flex, FlexItem } from '../styles/Flex';
 import WriteUp from '../editor/WriteUp';
+import WriteUpFunc from '../editor/WriteUpFunc';
 
 function AuthenticatedApp() {
 	return (
@@ -19,7 +20,8 @@ function AuthenticatedApp() {
 								<Profile />
 							</Route>
 							<Route path="/write">
-								<WriteUp />
+								{/* <WriteUp /> */}
+								<WriteUpFunc />
 							</Route>
 							<Route exact path="/">
 								<Home />
