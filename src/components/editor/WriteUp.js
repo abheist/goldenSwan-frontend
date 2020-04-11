@@ -1,7 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import {
+	Editor,
+	EditorState,
+	RichUtils,
+	convertToRaw,
+	convertFromRaw,
+} from 'draft-js';
 import { getBlockStyle, styleMap } from './editorUtils';
 import BlockStyleControls from './BlockStyleControls';
 import InlineStyleControls from './InlineStyleControls';
@@ -11,7 +17,16 @@ import './Draft.css';
 class WriteUp extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { editorState: EditorState.createEmpty() };
+		const content = window.localStorage.getItem('content');
+		if (content) {
+			this.state = {
+				editorState: EditorState.createWithContent(
+					convertFromRaw(JSON.parse(content))
+				),
+			};
+		} else {
+			this.state = { editorState: EditorState.createEmpty() };
+		}
 		this.editor = null;
 		this.setEditorRef = element => {
 			this.editor = element;
@@ -19,7 +34,7 @@ class WriteUp extends React.Component {
 		this.focusEditor = () => {
 			if (this.editor) this.editor.focus();
 		};
-		this.onChange = editorState => this.setState({ editorState });
+		this.onChange = editorState => this._onChange(editorState);
 		this.handleKeyCommand = command => this._handleKeyCommand(command);
 		this.onTab = e => this._onTab(e);
 		this.toggleBlockType = type => this._toggleBlockType(type);
@@ -28,6 +43,19 @@ class WriteUp extends React.Component {
 
 	componentDidMount() {
 		this.focusEditor();
+	}
+
+	saveContent = content => {
+		window.localStorage.setItem(
+			'content',
+			JSON.stringify(convertToRaw(content))
+		);
+	};
+
+	_onChange(editorState) {
+		const contentState = editorState.getCurrentContent();
+		this.saveContent(contentState);
+		this.setState({ editorState });
 	}
 
 	_handleKeyCommand(command) {
