@@ -13,7 +13,7 @@ function AuthenticatedApp() {
 				<Header />
 
 				<Flex justify="center">
-					<FlexItem width="600px">
+					<FlexItem width="1200px">
 						<Switch>
 							<Route path="/profile">
 								<Profile />
