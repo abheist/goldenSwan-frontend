@@ -62,6 +62,7 @@ const GlobalStyle = createGlobalStyle`
 		color: rgb(255, 255, 255);
 		background-color: rgb(87, 62, 222);
 	}
+
 `;
 
 const Theme = ({ children }) => (
