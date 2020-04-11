@@ -14,35 +14,29 @@ import InlineStyleControls from './InlineStyleControls';
 import 'draft-js/dist/Draft.css';
 import './Draft.css';
 
-// -------------- IMPORTANT ------------------------------
-// DATA SAVING AND FETCHING NOT WORKING WITH LOCAL STORAGE
-// -------------- IMPORTANT ------------------------------
-function WriteUpFunc(props) {
+function WriteUpFunc() {
 	const content = window.localStorage.getItem('content');
 
 	const [editorState, setEditorState] = useState(
 		content
-			? EditorState.createEmpty()
-			: EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
+			? EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
+			: EditorState.createEmpty()
 	);
 
 	const editor = useRef(null);
-
-	const focusEditor = () => {
-		if (editor) editor.current.focus();
-	};
+	function focusEditor() {
+		editor.current.focus();
+	}
 
 	useEffect(() => {
 		focusEditor();
 	}, []);
 
 	useEffect(() => {
-		window.localStorage.setItem(
-			'content',
-			JSON.stringify(
-				convertToRaw(editorState.getCurrentContent(editorState))
-			)
+		const dataToSave = JSON.stringify(
+			convertToRaw(editorState.getCurrentContent())
 		);
+		window.localStorage.setItem('content', dataToSave);
 	}, [editorState]);
 
 	const handleKeyCommand = command => {
@@ -57,13 +51,11 @@ function WriteUpFunc(props) {
 	const toggleBlockType = blockType => {
 		setEditorState(RichUtils.toggleBlockType(editorState, blockType));
 	};
-
 	const toggleInlineStyle = inlineStyle => {
 		setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
 	};
 
 	let className = 'RichEditor-editor';
-
 	const contentState = editorState.getCurrentContent();
 	if (!contentState.hasText()) {
 		if (
@@ -77,7 +69,6 @@ function WriteUpFunc(props) {
 	}
 
 	if (!editorState) return <div>Content Loading...</div>;
-
 	return (
 		<div className="RichEditor-root">
 			<BlockStyleControls
@@ -94,7 +85,7 @@ function WriteUpFunc(props) {
 					customStyleMap={styleMap}
 					editorState={editorState}
 					handleKeyCommand={handleKeyCommand}
-					onChange={setEditorState}
+					onChange={newEditorState => setEditorState(newEditorState)}
 					ref={editor}
 					placeholder="Tell a story..."
 					spellCheck
