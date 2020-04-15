@@ -39,7 +39,7 @@ function WriteUpFunc() {
 		window.localStorage.setItem('content', dataToSave);
 	}, [editorState]);
 
-	const handleKeyCommand = command => {
+	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
 		if (newState) {
 			setEditorState(newState);
@@ -48,22 +48,17 @@ function WriteUpFunc() {
 		return false;
 	};
 
-	const toggleBlockType = blockType => {
+	const toggleBlockType = (blockType) => {
 		setEditorState(RichUtils.toggleBlockType(editorState, blockType));
 	};
-	const toggleInlineStyle = inlineStyle => {
+	const toggleInlineStyle = (inlineStyle) => {
 		setEditorState(RichUtils.toggleInlineStyle(editorState, inlineStyle));
 	};
 
 	let className = 'RichEditor-editor';
 	const contentState = editorState.getCurrentContent();
 	if (!contentState.hasText()) {
-		if (
-			contentState
-				.getBlockMap()
-				.first()
-				.getType() !== 'unstyled'
-		) {
+		if (contentState.getBlockMap().first().getType() !== 'unstyled') {
 			className += ' RichEditor-hidePlaceholder';
 		}
 	}
@@ -85,7 +80,9 @@ function WriteUpFunc() {
 					customStyleMap={styleMap}
 					editorState={editorState}
 					handleKeyCommand={handleKeyCommand}
-					onChange={newEditorState => setEditorState(newEditorState)}
+					onChange={(newEditorState) =>
+						setEditorState(newEditorState)
+					}
 					ref={editor}
 					placeholder="Tell a story..."
 					spellCheck
