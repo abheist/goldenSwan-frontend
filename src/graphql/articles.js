@@ -5,15 +5,20 @@ export const QL_MUTATION_CREATE_ARTICLE = gql`
 		createArticle(title: $title, content: $content) {
 			article {
 				id
-				slug
 				title
-				author {
-					id
-					username
-				}
 				content
-				created
-				updated
+			}
+		}
+	}
+`;
+
+export const QL_MUTATION_UPDATE_ARTICLE = gql`
+	mutation updateArticle($id: Int!, $title: String!, $content: String!) {
+		updateArticle(id: $id, title: $title, content: $content) {
+			article {
+				id
+				title
+				content
 			}
 		}
 	}
