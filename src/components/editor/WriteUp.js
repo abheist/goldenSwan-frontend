@@ -28,24 +28,24 @@ class WriteUp extends React.Component {
 			this.state = { editorState: EditorState.createEmpty() };
 		}
 		this.editor = null;
-		this.setEditorRef = element => {
+		this.setEditorRef = (element) => {
 			this.editor = element;
 		};
 		this.focusEditor = () => {
 			if (this.editor) this.editor.focus();
 		};
-		this.onChange = editorState => this._onChange(editorState);
-		this.handleKeyCommand = command => this._handleKeyCommand(command);
-		this.onTab = e => this._onTab(e);
-		this.toggleBlockType = type => this._toggleBlockType(type);
-		this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+		this.onChange = (editorState) => this._onChange(editorState);
+		this.handleKeyCommand = (command) => this._handleKeyCommand(command);
+		this.onTab = (e) => this._onTab(e);
+		this.toggleBlockType = (type) => this._toggleBlockType(type);
+		this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
 	}
 
 	componentDidMount() {
 		this.focusEditor();
 	}
 
-	saveContent = content => {
+	saveContent = (content) => {
 		window.localStorage.setItem(
 			'content',
 			JSON.stringify(convertToRaw(content))
@@ -85,12 +85,7 @@ class WriteUp extends React.Component {
 		let className = 'RichEditor-editor';
 		const contentState = editorState.getCurrentContent();
 		if (!contentState.hasText()) {
-			if (
-				contentState
-					.getBlockMap()
-					.first()
-					.getType() !== 'unstyled'
-			) {
+			if (contentState.getBlockMap().first().getType() !== 'unstyled') {
 				className += ' RichEditor-hidePlaceholder';
 			}
 		}
