@@ -58,13 +58,13 @@ function LoginForm({ setToken }) {
 					username: Yup.string().required('Required!'),
 					password: Yup.string().required('Required!'),
 				})}
-				onSubmit={values => {
+				onSubmit={(values) => {
 					requestLogin({
 						variables: {
 							email: values.username,
 							password: values.password,
 						},
-					}).catch(error => console.log(JSON.stringify(error)));
+					}).catch((error) => console.log(JSON.stringify(error)));
 				}}
 			>
 				<Form>
