@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QL_MUTATION_CREATE_ARTICLE = gql`
-	mutation VerifAccount($title: String!, $content: String!) {
+	mutation createArticle($title: String!, $content: String!) {
 		createArticle(title: $title, content: $content) {
 			article {
 				id
