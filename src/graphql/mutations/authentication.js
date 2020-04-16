@@ -7,12 +7,7 @@ export const QL_MUTATION_REGISTER_NEW_USER = gql`
 		$password1: String!
 		$password2: String!
 	) {
-		register(
-			email: $email
-			username: $username
-			password1: $password1
-			password2: $password2
-		) {
+		register(email: $email, username: $username, password1: $password1, password2: $password2) {
 			success
 			errors
 		}
@@ -38,16 +33,8 @@ export const QL_MUTATION_SEND_RESET_PASSWORD_EMAIL = gql`
 `;
 
 export const QL_MUTATION_PASSWORD_RESET_WITHOUT_OLD_PASSWORD = gql`
-	mutation passwordReset(
-		$token: String!
-		$newPassword1: String!
-		$newPassword2: String!
-	) {
-		passwordReset(
-			token: $token
-			newPassword1: $newPassword1
-			newPassword2: $newPassword2
-		) {
+	mutation passwordReset($token: String!, $newPassword1: String!, $newPassword2: String!) {
+		passwordReset(token: $token, newPassword1: $newPassword1, newPassword2: $newPassword2) {
 			success
 			errors
 		}

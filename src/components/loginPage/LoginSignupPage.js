@@ -18,11 +18,7 @@ function LoginSignupPage(props) {
 	const { path } = useRouteMatch();
 	return (
 		<Flex fill="true" background={COLOR_LIGHT}>
-			<Flex
-				flex="1"
-				background={COLOR_PRIMARY}
-				padding={{ left: 60, top: 32, right: 32 }}
-			>
+			<Flex flex="1" background={COLOR_PRIMARY} padding={{ left: 60, top: 32, right: 32 }}>
 				<div>
 					<img src={logo} alt="MeUp Logo" height="45px" />
 					<MeLightH5
@@ -31,13 +27,10 @@ function LoginSignupPage(props) {
 							margin-top: 100px;
 						`}
 					>
-						“Whether you are launching a start-up or leading an
-						established company, you should start establishing your
-						social media presence if you haven't already”
+						“Whether you are launching a start-up or leading an established company, you
+						should start establishing your social media presence if you haven't already”
 					</MeLightH5>
-					<MeLightH6 color={COLOR_LIGHT}>
-						- Sir Richard Branson.
-					</MeLightH6>
+					<MeLightH6 color={COLOR_LIGHT}>- Sir Richard Branson.</MeLightH6>
 					<Switch>
 						<Route exact path={path}>
 							<img
@@ -68,13 +61,7 @@ function LoginSignupPage(props) {
 					</Switch>
 				</div>
 			</Flex>
-			<Flex
-				flex="3"
-				direction="column"
-				width="100%"
-				padding={{ right: 60 }}
-				height="100%"
-			>
+			<Flex flex="3" direction="column" width="100%" padding={{ right: 60 }} height="100%">
 				<Flex
 					justify="flex-end"
 					width="100%"
@@ -101,8 +88,7 @@ function LoginSignupPage(props) {
 					</div>
 				</Flex>
 				<Flex height="40px" justify="flex-end" align="center" gap="10">
-					<MeCaption>© 2020 MeUp</MeCaption>|
-					<MeCaption>All rights reserved.</MeCaption>|
+					<MeCaption>© 2020 MeUp</MeCaption>|<MeCaption>All rights reserved.</MeCaption>|
 					<MeCaption>
 						<a href="https://meup.com/privacy">Privacy policies</a>
 					</MeCaption>

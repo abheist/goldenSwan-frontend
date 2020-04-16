@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 import { QL_MUTATION_PASSWORD_RESET_WITHOUT_OLD_PASSWORD } from '../../graphql/mutations/authentication';
 import { Flex, FlexItem } from '../styles/Flex';
-import { MeButton } from '../styles/MeButton';
+import MeButton from '../styles/MeButton';
 import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
 
 function PasswordResetForm() {
@@ -53,10 +53,7 @@ function PasswordResetForm() {
 								as={MeTextInput}
 								autoComplete="new-password"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="password"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="password" />
 						</FormGroup>
 						<FlexItem margin={{ top: 36 }}>
 							<MeButton type="submit" kind="primary">

@@ -1,11 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import {
-	useTooltipState,
-	Tooltip as ReakitTooltip,
-	TooltipReference,
-} from 'reakit/Tooltip';
+import { useTooltipState, Tooltip as ReakitTooltip, TooltipReference } from 'reakit/Tooltip';
 // eslint-disable-next-line no-unused-vars
 import styled from 'styled-components/macro';
 import { COLOR_LIGHT, COLOR_DARK } from '../styles/ThemeConstants';
@@ -15,7 +11,7 @@ function Tooltip({ children, title, ...props }) {
 	return (
 		<>
 			<TooltipReference {...tooltip} {...children.props}>
-				{referenceProps => React.cloneElement(children, referenceProps)}
+				{(referenceProps) => React.cloneElement(children, referenceProps)}
 			</TooltipReference>
 			<ReakitTooltip
 				{...tooltip}

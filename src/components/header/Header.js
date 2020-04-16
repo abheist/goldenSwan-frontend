@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Add } from 'styled-icons/material';
 import logo from '../../assets/img/logo_dark.png';
 import { Flex, FlexItem } from '../styles/Flex';
-import { Avatar } from '../styles/Avatar';
+import Avatar from '../styles/Avatar';
 import Tooltip from '../tooltip/Tooltip';
-import { IconButton } from '../styles/IconButton';
+import IconButton from '../styles/IconButton';
 
 function Header() {
 	return (

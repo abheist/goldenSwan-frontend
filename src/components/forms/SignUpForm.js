@@ -13,16 +13,14 @@ import { QL_MUTATION_REGISTER_NEW_USER } from '../../graphql/mutations/authentic
 import { generateUsername } from '../../helpers/authenticatedUser';
 import { Divider } from '../styles/Divider';
 import { Flex, FlexItem } from '../styles/Flex';
-import { MeButton } from '../styles/MeButton';
+import MeButton from '../styles/MeButton';
 import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
 import { COLOR_PRIMARY } from '../styles/ThemeConstants';
 import { MeBody2, MeH4, MeH5, MeH6 } from '../styles/Typography';
 // eslint-disable-next-line no-unused-vars
 
 function SignUpForm() {
-	const [doRegisterUser, { data }] = useMutation(
-		QL_MUTATION_REGISTER_NEW_USER
-	);
+	const [doRegisterUser, { data }] = useMutation(QL_MUTATION_REGISTER_NEW_USER);
 
 	if (data?.register?.success) {
 		return (
@@ -95,10 +93,7 @@ function SignUpForm() {
 								minWidth="230px"
 								autoComplete="email"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="email"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="email" />
 						</FormGroup>
 
 						<FormGroup width="100%">
@@ -111,10 +106,7 @@ function SignUpForm() {
 								as={MeTextInput}
 								autoComplete="new-password"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="password"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="password" />
 						</FormGroup>
 						<FlexItem margin={{ top: 36 }}>
 							<MeButton type="submit" kind="primary">

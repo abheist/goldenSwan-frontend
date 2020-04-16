@@ -1,12 +1,7 @@
 import React from 'react';
 import '../../assets/Inter/inter.css';
 import './App.css';
-import {
-	ApolloProvider,
-	ApolloClient,
-	HttpLink,
-	InMemoryCache,
-} from '@apollo/client';
+import { ApolloProvider, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/link-context';
 import { BrowserRouter } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.min.css';

@@ -4,7 +4,7 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import { MeButton } from '../styles/MeButton';
+import MeButton from '../styles/MeButton';
 import { MeTextInput, FormGroup, MeErrorMessage } from '../styles/MeTextInput';
 import {
 	QL_MUTATION_AUTH_TOKEN_WITH_USERNAME,
@@ -20,13 +20,9 @@ import {
 import { MeCaption } from '../styles/Typography';
 
 function LoginForm({ setToken }) {
-	const [requestLogin, { data: loginData }] = useMutation(
-		QL_MUTATION_AUTH_TOKEN_WITH_USERNAME
-	);
+	const [requestLogin, { data: loginData }] = useMutation(QL_MUTATION_AUTH_TOKEN_WITH_USERNAME);
 
-	const [doVerifyToken, { data: verifyTokenData }] = useMutation(
-		QL_MUTATION_AUTH_TOKEN_VERIFY
-	);
+	const [doVerifyToken, { data: verifyTokenData }] = useMutation(QL_MUTATION_AUTH_TOKEN_VERIFY);
 
 	useEffect(() => {
 		if (loginData?.tokenAuth?.success) {
@@ -64,7 +60,7 @@ function LoginForm({ setToken }) {
 							email: values.username,
 							password: values.password,
 						},
-					}).catch((error) => console.log(JSON.stringify(error)));
+					});
 				}}
 			>
 				<Form>
@@ -78,25 +74,15 @@ function LoginForm({ setToken }) {
 								autoComplete="username"
 								width="200px"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="username"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="username" />
 						</FormGroup>
 
 						<FormGroup margin={{ right: 10 }}>
-							<Flex
-								as="label"
-								htmlFor="password"
-								justify="space-between"
-							>
+							<Flex as="label" htmlFor="password" justify="space-between">
 								<span>Password</span>
 								<FlexItem margin={{ right: 8 }}>
 									<MeCaption as="span">
-										<Link
-											to="/forgot-password/"
-											tabIndex="-1"
-										>
+										<Link to="/forgot-password/" tabIndex="-1">
 											Forgot password?
 										</Link>
 									</MeCaption>
@@ -109,10 +95,7 @@ function LoginForm({ setToken }) {
 								autoComplete="current-password"
 								width="200px"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="password"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="password" />
 						</FormGroup>
 						<FlexItem margin={{ top: 36 }}>
 							<MeButton type="submit" kind="primary">

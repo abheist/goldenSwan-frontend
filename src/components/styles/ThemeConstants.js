@@ -28,8 +28,7 @@ export const COLOR_WARNING_DARKER = '#ff9705';
 
 export const FONT_SAN_SERIF =
 	'"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
-export const FONT_MONO_SPACED =
-	'source-code-pro, Menlo, Monaco, Consolas, "Courier New"';
+export const FONT_MONO_SPACED = 'source-code-pro, Menlo, Monaco, Consolas, "Courier New"';
 
 export const SPACINGS = PropTypes.oneOf([4, 8, 16, 20, 24, 32, 40, 54]);
 export const COLORS = PropTypes.oneOf([

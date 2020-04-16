@@ -9,3 +9,5 @@ export const QL_TYPE_USERS = gql`
 		}
 	}
 `;
+
+export const QL_TYPE_USER = gql``;

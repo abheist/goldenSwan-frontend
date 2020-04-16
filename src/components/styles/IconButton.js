@@ -189,7 +189,7 @@ const buttonColors = theme.variants('mode', 'kind', {
 	},
 });
 
-export const IconButton = styled(Button)`
+const IconButton = styled(Button)`
 	${buttonColors}
 	transition: box-shadow 0.15s ease-in-out;
 	outline: 0;
@@ -213,16 +213,12 @@ export const IconButton = styled(Button)`
 `;
 
 Button.propTypes = {
-	kind: PropTypes.oneOf([
-		'default',
-		'primary',
-		'success',
-		'warning',
-		'danger',
-	]),
+	kind: PropTypes.oneOf(['default', 'primary', 'success', 'warning', 'danger']),
 	width: PropTypes.string,
 };
 
 IconButton.defaultProps = {
 	kind: 'default',
 };
+
+export default IconButton;

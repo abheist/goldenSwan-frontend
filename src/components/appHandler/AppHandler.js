@@ -18,15 +18,12 @@ function AppHandler() {
 	);
 
 	useEffect(() => {
-		if (
-			getLocalExpTime() &&
-			Math.round(Date.now() / 1000) > getLocalExpTime()
-		) {
+		if (getLocalExpTime() && Math.round(Date.now() / 1000) > getLocalExpTime()) {
 			doRefreshToken({
 				variables: {
 					refreshToken: getLocalRefreshToken(),
 				},
-			}).catch(error => console.log(error));
+			});
 		}
 	}, [doRefreshToken]);
 
@@ -48,15 +45,7 @@ function AppHandler() {
 			</div>
 		);
 	}
-	return (
-		<>
-			{token ? (
-				<AuthenticatedApp />
-			) : (
-				<UnauthenticatedApp setToken={setToken} />
-			)}
-		</>
-	);
+	return <>{token ? <AuthenticatedApp /> : <UnauthenticatedApp setToken={setToken} />}</>;
 }
 
 export default AppHandler;

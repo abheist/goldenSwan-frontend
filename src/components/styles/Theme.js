@@ -66,9 +66,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Theme = ({ children }) => (
-	<ThemeProvider
-		theme={{ mode: mode => mode.light, font: font => font.sanSerif }}
-	>
+	<ThemeProvider theme={{ mode: (mode) => mode.light, font: (font) => font.sanSerif }}>
 		<GlobalStyle />
 		{children}
 	</ThemeProvider>

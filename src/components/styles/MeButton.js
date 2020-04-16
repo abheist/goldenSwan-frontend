@@ -189,7 +189,7 @@ const buttonColors = theme.variants('mode', 'kind', {
 	},
 });
 
-export const MeButton = styled(Button)`
+const MeButton = styled(Button)`
 	${buttonColors}
 	transition: box-shadow 0.15s ease-in-out;
 	outline: 0;
@@ -203,7 +203,7 @@ export const MeButton = styled(Button)`
 	line-height: 20px;
 	letter-spacing: 1.25px;
 	text-transform: uppercase;
-	width: ${props => props.width || 'auto'};
+	width: ${(props) => props.width || 'auto'};
 
 	&[aria-disabled='true'] {
 		cursor: auto;
@@ -224,16 +224,12 @@ export const MeButton = styled(Button)`
 `;
 
 Button.propTypes = {
-	kind: PropTypes.oneOf([
-		'default',
-		'primary',
-		'success',
-		'warning',
-		'danger',
-	]),
+	kind: PropTypes.oneOf(['default', 'primary', 'success', 'warning', 'danger']),
 	width: PropTypes.string,
 };
 
 MeButton.defaultProps = {
 	kind: 'default',
 };
+
+export default MeButton;

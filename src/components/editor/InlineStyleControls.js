@@ -2,11 +2,11 @@ import React from 'react';
 import { INLINE_STYLES } from './editorUtils';
 import StyleButton from './StyleButton';
 
-const InlineStyleControls = props => {
+const InlineStyleControls = (props) => {
 	const currentStyle = props.editorState.getCurrentInlineStyle();
 	return (
 		<div className="RichEditor-controls">
-			{INLINE_STYLES.map(type => (
+			{INLINE_STYLES.map((type) => (
 				<StyleButton
 					key={type.label}
 					active={currentStyle.has(type.style)}

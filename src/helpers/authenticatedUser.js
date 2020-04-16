@@ -1,10 +1,6 @@
-import {
-	setLocalToken,
-	setLocalRefreshToken,
-	setLocalExpTime,
-} from './authService';
+import { setLocalToken, setLocalRefreshToken, setLocalExpTime } from './authService';
 
-const setRefreshTokenContent = data => {
+const setRefreshTokenContent = (data) => {
 	if (data?.refreshToken?.success) {
 		setLocalToken(data.refreshToken.token);
 		setLocalRefreshToken(data.refreshToken.refreshToken);
@@ -13,11 +9,6 @@ const setRefreshTokenContent = data => {
 };
 
 const generateUsername = () =>
-	Math.random()
-		.toString(36)
-		.substring(2, 15) +
-	Math.random()
-		.toString(36)
-		.substring(2, 15);
+	Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
 export { setRefreshTokenContent, generateUsername };

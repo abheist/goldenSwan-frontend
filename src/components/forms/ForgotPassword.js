@@ -12,16 +12,14 @@ import yahooLogo from '../../assets/img/outlookLogo.svg';
 import outlookLogo from '../../assets/img/yahooMailLogo.svg';
 import { QL_MUTATION_SEND_RESET_PASSWORD_EMAIL } from '../../graphql/mutations/authentication';
 import { Flex, FlexItem } from '../styles/Flex';
-import { MeButton } from '../styles/MeButton';
+import MeButton from '../styles/MeButton';
 import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
 import { COLOR_PRIMARY, COLOR_PRIMARY_DARK } from '../styles/ThemeConstants';
 import { MeBody2, MeCaption, MeH4, MeH5, MeH6 } from '../styles/Typography';
 // eslint-disable-next-line no-unused-vars
 
 function ForgotPasswordForm() {
-	const [sendResetPasswordEmail, { data }] = useMutation(
-		QL_MUTATION_SEND_RESET_PASSWORD_EMAIL
-	);
+	const [sendResetPasswordEmail, { data }] = useMutation(QL_MUTATION_SEND_RESET_PASSWORD_EMAIL);
 
 	if (data?.sendPasswordResetEmail?.success) {
 		return (
@@ -80,10 +78,7 @@ function ForgotPasswordForm() {
 								minWidth="300px"
 								autoComplete="email"
 							/>
-							<ErrorMessage
-								component={MeErrorMessage}
-								name="email"
-							/>
+							<ErrorMessage component={MeErrorMessage} name="email" />
 						</FormGroup>
 
 						<FlexItem margin={{ top: 10 }}>

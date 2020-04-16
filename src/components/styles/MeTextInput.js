@@ -1,9 +1,5 @@
 import styled from 'styled-components/macro';
-import {
-	COLOR_PRIMARY_LIGHT,
-	COLOR_BACKGROUND,
-	COLOR_LIGHT,
-} from './ThemeConstants';
+import { COLOR_PRIMARY_LIGHT, COLOR_BACKGROUND, COLOR_LIGHT } from './ThemeConstants';
 import { MeCaption } from './Typography';
 
 export const MeTextInput = styled.input`
@@ -20,13 +16,12 @@ export const MeTextInput = styled.input`
 	letter-spacing: normal;
 	margin: 0 8px 0 0;
 	outline-style: none;
-	transition-property: background-color, outline, color, box-shadow,
-		-webkit-box-shadow;
+	transition-property: background-color, outline, color, box-shadow, -webkit-box-shadow;
 	transition-delay: 0s;
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
-	${props => props.width && `width: ${props.width};`}
-	${props => props.minWidth && `min-width: ${props.minWidth};`}
+	${(props) => props.width && `width: ${props.width};`}
+	${(props) => props.minWidth && `min-width: ${props.minWidth};`}
 
   &:hover {
 		background-color: ${COLOR_LIGHT};
@@ -49,23 +44,11 @@ export const MeErrorMessage = styled(MeCaption)`
 export const FormGroup = styled.div`
 	height: 96px;
 
-	${props =>
-		props.margin &&
-		props.margin.top &&
-		`margin-top: ${props.margin.top}px;`}
-	${props =>
-		props.margin &&
-		props.margin.right &&
-		`margin-right: ${props.margin.right}px;`}
-	${props =>
-		props.margin &&
-		props.margin.bottom &&
-		`margin-bottom: ${props.margin.bottom}px;`}
-	${props =>
-		props.margin &&
-		props.margin.left &&
-		`margin-left: ${props.margin.left}px;`}
-	${props => props.width && `width: ${props.width};`}
+	${(props) => props.margin && props.margin.top && `margin-top: ${props.margin.top}px;`}
+	${(props) => props.margin && props.margin.right && `margin-right: ${props.margin.right}px;`}
+	${(props) => props.margin && props.margin.bottom && `margin-bottom: ${props.margin.bottom}px;`}
+	${(props) => props.margin && props.margin.left && `margin-left: ${props.margin.left}px;`}
+	${(props) => props.width && `width: ${props.width};`}
 
 	label {
 		display: block;
