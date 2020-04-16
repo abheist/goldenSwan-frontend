@@ -3,38 +3,60 @@
 import { useMutation } from '@apollo/client';
 import { convertFromRaw, convertToRaw, Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import debounce from 'lodash/debounce';
 import React, { useEffect, useRef, useState } from 'react';
-import { QL_MUTATION_CREATE_ARTICLE, QL_MUTATION_UPDATE_ARTICLE } from '../../graphql/articles';
+import { QL_MUTATION_UPDATE_ARTICLE } from '../../graphql/articles';
 import BlockStyleControls from './BlockStyleControls';
 import './Draft.css';
 import { getBlockStyle, styleMap } from './editorUtils';
 import InlineStyleControls from './InlineStyleControls';
+import useDebounce from '../../helpers/useDebounce';
 
-function WriteUpFunc() {
-	const content = window.localStorage.getItem('content');
-
-	const [createDraft, { data: articleData }] = useMutation(QL_MUTATION_CREATE_ARTICLE);
-	const [updateDraft, { data: updatedData }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
-
+function WriteUpFunc({ articleId, articleContent }) {
+	console.log(articleContent);
+	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
 	const [editorState, setEditorState] = useState(
-		content
-			? EditorState.createWithContent(convertFromRaw(JSON.parse(content)))
-			: EditorState.createEmpty()
+		EditorState.createWithContent(convertFromRaw(JSON.parse(articleContent)))
 	);
+	const debounceEditorState = useDebounce(editorState, 500);
 
 	const editor = useRef(null);
 	function focusEditor() {
 		editor.current.focus();
 	}
-
 	useEffect(() => {
 		focusEditor();
 	}, []);
 
+	const saveTheData = () => {
+		const currentContent = editorState.getCurrentContent();
+		if (currentContent.hasText()) {
+			const dataToSave = JSON.stringify(convertToRaw(currentContent));
+			if (currentContent.hasText()) {
+				if (articleId) {
+					updateArticle({
+						variables: {
+							id: articleId,
+							title: 'something something',
+							content: dataToSave,
+						},
+					}).then((response) => {
+						console.log(response);
+						console.log('updated content');
+					});
+				} else {
+					console.log('no article id');
+				}
+			}
+		}
+	};
+
 	useEffect(() => {
-		const dataToSave = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-		window.localStorage.setItem('content', dataToSave);
-	}, [editorState]);
+		const currentContent = editorState.getCurrentContent();
+		if (currentContent.hasText()) {
+			saveTheData(debounceEditorState);
+		}
+	}, [debounceEditorState]);
 
 	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
