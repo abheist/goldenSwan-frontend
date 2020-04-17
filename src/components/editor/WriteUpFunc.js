@@ -40,7 +40,7 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 				},
 			});
 		} else {
-			console.log('no slug');
+			console.log('no slug or content');
 		}
 	}, [editorState, articleSlug, updateArticle]);
 
