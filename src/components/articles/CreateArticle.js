@@ -6,7 +6,7 @@ import WriteUpFunc from '../editor/WriteUpFunc';
 
 function CreateArticle() {
 	const [createArticle, { data: createdArticle }] = useMutation(QL_MUTATION_CREATE_ARTICLE);
-	const [articleId, setArticleId] = useState(null);
+	const [articleSlug, setArticleSlug] = useState(null);
 	const [articleContent, setArticleContent] = useState(null);
 
 	useEffect(() => {
@@ -17,19 +17,19 @@ function CreateArticle() {
 				content,
 			},
 		});
-	}, []);
+	}, [createArticle]);
 
 	useEffect(() => {
-		const localId = createdArticle?.createArticle?.article?.id;
-		if (localId) {
-			setArticleId(localId);
+		const localSlug = createdArticle?.createArticle?.article?.slug;
+		if (localSlug) {
+			setArticleSlug(localSlug);
 			setArticleContent(createdArticle?.createArticle?.article?.content);
 		}
 	}, [createdArticle]);
 
-	if (!articleId) return <div>Loading...</div>;
+	if (!articleSlug) return <div>Loading...</div>;
 
-	return <WriteUpFunc articleId={articleId} articleContent={articleContent} />;
+	return <WriteUpFunc articleSlug={articleSlug} articleContent={articleContent} />;
 }
 
 export default CreateArticle;

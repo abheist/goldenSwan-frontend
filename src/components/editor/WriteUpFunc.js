@@ -1,24 +1,21 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events,no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useMutation } from '@apollo/client';
-import { convertFromRaw, convertToRaw, Editor, EditorState, RichUtils } from 'draft-js';
+import { convertFromRaw, Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import debounce from 'lodash/debounce';
 import React, { useEffect, useRef, useState } from 'react';
 import { QL_MUTATION_UPDATE_ARTICLE } from '../../graphql/articles';
 import BlockStyleControls from './BlockStyleControls';
 import './Draft.css';
 import { getBlockStyle, styleMap } from './editorUtils';
 import InlineStyleControls from './InlineStyleControls';
-import useDebounce from '../../helpers/useDebounce';
 
-function WriteUpFunc({ articleId, articleContent }) {
-	console.log(articleContent);
-	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
+function WriteUpFunc({ articleSlug, articleContent }) {
 	const [editorState, setEditorState] = useState(
 		EditorState.createWithContent(convertFromRaw(JSON.parse(articleContent)))
 	);
-	const debounceEditorState = useDebounce(editorState, 500);
+
+	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
 
 	const editor = useRef(null);
 	function focusEditor() {
@@ -28,35 +25,20 @@ function WriteUpFunc({ articleId, articleContent }) {
 		focusEditor();
 	}, []);
 
-	const saveTheData = () => {
-		const currentContent = editorState.getCurrentContent();
-		if (currentContent.hasText()) {
-			const dataToSave = JSON.stringify(convertToRaw(currentContent));
-			if (currentContent.hasText()) {
-				if (articleId) {
-					updateArticle({
-						variables: {
-							id: articleId,
-							title: 'something something',
-							content: dataToSave,
-						},
-					}).then((response) => {
-						console.log(response);
-						console.log('updated content');
-					});
-				} else {
-					console.log('no article id');
-				}
-			}
-		}
-	};
-
 	useEffect(() => {
 		const currentContent = editorState.getCurrentContent();
-		if (currentContent.hasText()) {
-			saveTheData(debounceEditorState);
+		if (articleSlug && currentContent.hasText()) {
+			updateArticle({
+				variables: {
+					slug: articleSlug,
+					title: 'what are you doing!',
+					content: JSON.stringify(convertToRaw(currentContent)),
+				},
+			});
+		} else {
+			console.log('no slug');
 		}
-	}, [debounceEditorState]);
+	}, [editorState, articleSlug]);
 
 	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -82,7 +64,7 @@ function WriteUpFunc({ articleId, articleContent }) {
 		}
 	}
 
-	if (!editorState) return <div>Content Loading...</div>;
+	if (!editorState && !articleSlug) return <div>Content Loading...</div>;
 	return (
 		<div className="RichEditor-root">
 			<BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
