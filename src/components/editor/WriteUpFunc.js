@@ -26,6 +26,10 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 	}, []);
 
 	useEffect(() => {
+		console.log('updated');
+	}, [updatedArticle]);
+
+	useEffect(() => {
 		const currentContent = editorState.getCurrentContent();
 		if (articleSlug && currentContent.hasText()) {
 			updateArticle({
@@ -38,7 +42,7 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 		} else {
 			console.log('no slug');
 		}
-	}, [editorState, articleSlug]);
+	}, [editorState, articleSlug, updateArticle]);
 
 	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);

@@ -5,10 +5,11 @@ import {
 	getLocalExpTime,
 	getLocalRefreshToken,
 	getLocalToken,
-	setLocalToken,
-	setLocalRefreshToken,
 	setLocalExpTime,
+	setLocalRefreshToken,
+	setLocalToken,
 } from '../../helpers/authService';
+import { CONTACT_ADMIN_EMAIL } from '../../helpers/constants';
 import AuthenticatedApp from './AuthenticatedApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
 
@@ -35,7 +36,7 @@ function AppHandler() {
 				},
 			});
 		}
-	}, []);
+	}, [doRefreshToken]);
 
 	useEffect(() => {
 		if (refreshTokenData?.refreshToken?.success) {
@@ -51,7 +52,7 @@ function AppHandler() {
 		return (
 			<div>
 				Server error!!! Please contact
-				<a href="mailto:hi@abhiy.com"> admin</a>
+				<a href={`mailto:${CONTACT_ADMIN_EMAIL}`}> admin</a>
 			</div>
 		);
 	}
