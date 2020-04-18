@@ -13,7 +13,8 @@ function CreateArticle() {
 		const content = JSON.stringify(convertToRaw(EditorState.createEmpty().getCurrentContent()));
 		createArticle({
 			variables: {
-				title: 'something someting',
+				title: '',
+				subtitle: '',
 				content,
 			},
 		});

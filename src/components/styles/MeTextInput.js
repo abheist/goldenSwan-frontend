@@ -20,10 +20,24 @@ export const MeTextInput = styled.input`
 	transition-delay: 0s;
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
+
 	${(props) => props.width && `width: ${props.width};`}
 	${(props) => props.minWidth && `min-width: ${props.minWidth};`}
 
-  &:hover {
+	${(props) => props.margin && props.margin.top && `margin-top: ${props.margin.top}px;`}
+	${(props) => props.margin && props.margin.right && `margin-right: ${props.margin.right}px;`}
+	${(props) => props.margin && props.margin.bottom && `margin-bottom: ${props.margin.bottom}px;`}
+	${(props) => props.margin && props.margin.left && `margin-left: ${props.margin.left}px;`}
+
+	${(props) => props.padding && props.padding.top && `padding-top: ${props.padding.top}px;`}
+	${(props) => props.padding && props.padding.right && `padding-right: ${props.padding.right}px;`}
+	${(props) => props.padding && props.padding.bottom && `padding-bottom: ${props.padding.bottom}px;`}
+	${(props) => props.padding && props.padding.left && `padding-left: ${props.padding.left}px;`}
+
+	${(props) => props.height && `height: ${props.height};`}
+	${(props) => props.fontSize && `font-size: ${props.fontSize};`}
+	
+	&:hover {
 		background-color: ${COLOR_LIGHT};
 		border-color: rgba(0, 0, 0, 0.1);
 		box-shadow: 0 0 0 4px ${COLOR_PRIMARY_LIGHT};

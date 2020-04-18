@@ -9,11 +9,14 @@ import BlockStyleControls from './BlockStyleControls';
 import './Draft.css';
 import { getBlockStyle, styleMap } from './editorUtils';
 import InlineStyleControls from './InlineStyleControls';
+import { MeTextInput } from '../styles/MeTextInput';
 
 function WriteUpFunc({ articleSlug, articleContent }) {
 	const [editorState, setEditorState] = useState(
 		EditorState.createWithContent(convertFromRaw(JSON.parse(articleContent)))
 	);
+	const [title, setTitle] = useState(null);
+	const [subtitle, setSubtitle] = useState(null);
 
 	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
 
@@ -35,14 +38,15 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 			updateArticle({
 				variables: {
 					slug: articleSlug,
-					title: 'what are you doing!',
+					title: title || '',
+					subtitle: subtitle || '',
 					content: JSON.stringify(convertToRaw(currentContent)),
 				},
 			});
 		} else {
 			// console.log('no slug or content');
 		}
-	}, [editorState, articleSlug, updateArticle]);
+	}, [editorState, articleSlug, updateArticle, title, subtitle]);
 
 	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -70,22 +74,40 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 
 	if (!editorState && !articleSlug) return <div>Content Loading...</div>;
 	return (
-		<div className="RichEditor-root">
-			<BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
-			<InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
-			<div className={className} onClick={focusEditor}>
-				<Editor
-					blockStyleFn={getBlockStyle}
-					customStyleMap={styleMap}
-					editorState={editorState}
-					handleKeyCommand={handleKeyCommand}
-					onChange={(newEditorState) => setEditorState(newEditorState)}
-					ref={editor}
-					placeholder="Tell a story..."
-					spellCheck
-				/>
+		<>
+			<MeTextInput
+				width="100%"
+				margin={{ top: 20 }}
+				height="50px"
+				placeholder="Title"
+				fontSize="24px"
+				onChange={(event) => setTitle(event.target.value)}
+			/>
+			<MeTextInput
+				width="100%"
+				margin={{ bottom: 20 }}
+				height="40px"
+				placeholder="Subtitle"
+				fontSize="20px"
+				onChange={(event) => setSubtitle(event.target.value)}
+			/>
+			<div className="RichEditor-root">
+				<BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
+				<InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
+				<div className={className} onClick={focusEditor}>
+					<Editor
+						blockStyleFn={getBlockStyle}
+						customStyleMap={styleMap}
+						editorState={editorState}
+						handleKeyCommand={handleKeyCommand}
+						onChange={(newEditorState) => setEditorState(newEditorState)}
+						ref={editor}
+						placeholder="Tell a story..."
+						spellCheck
+					/>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
