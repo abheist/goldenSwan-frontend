@@ -18,16 +18,6 @@ function AppHandler() {
 		QL_MUTATION_AUTH_REFRESH_TOKEN
 	);
 
-	setInterval(() => {
-		if (getLocalExpTime() && getLocalExpTime() - Math.round(Date.now() / 1000) <= 0) {
-			doRefreshToken({
-				variables: {
-					refreshToken: getLocalRefreshToken(),
-				},
-			});
-		}
-	}, 100000);
-
 	useEffect(() => {
 		if (getLocalExpTime() && Math.round(Date.now() / 1000) > getLocalExpTime()) {
 			doRefreshToken({
