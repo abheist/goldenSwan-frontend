@@ -14,19 +14,25 @@ import AuthenticatedApp from './AuthenticatedApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
 
 function AppHandler() {
+	const [token, setToken] = useState(getLocalToken() || undefined);
+	const [counter, setCounter] = useState(0);
 	const [doRefreshToken, { data: refreshTokenData, error }] = useMutation(
 		QL_MUTATION_AUTH_REFRESH_TOKEN
 	);
 
+	setInterval(() => {
+		setCounter(counter + 1);
+	}, 240000);
+
 	useEffect(() => {
-		if (getLocalExpTime() && Math.round(Date.now() / 1000) > getLocalExpTime()) {
+		if (getLocalExpTime()) {
 			doRefreshToken({
 				variables: {
 					refreshToken: getLocalRefreshToken(),
 				},
 			});
 		}
-	}, [doRefreshToken]);
+	}, [doRefreshToken, counter]);
 
 	useEffect(() => {
 		if (refreshTokenData?.refreshToken?.success) {
@@ -35,8 +41,6 @@ function AppHandler() {
 			setLocalExpTime(refreshTokenData.refreshToken.payload.exp);
 		}
 	}, [refreshTokenData]);
-
-	const [token, setToken] = useState(getLocalToken() || undefined);
 
 	if (error) {
 		return (

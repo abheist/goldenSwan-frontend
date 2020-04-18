@@ -26,7 +26,7 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 	}, []);
 
 	useEffect(() => {
-		console.log('updated');
+		// console.log('updated');
 	}, [updatedArticle]);
 
 	useEffect(() => {
@@ -40,7 +40,7 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 				},
 			});
 		} else {
-			console.log('no slug or content');
+			// console.log('no slug or content');
 		}
 	}, [editorState, articleSlug, updateArticle]);
 
