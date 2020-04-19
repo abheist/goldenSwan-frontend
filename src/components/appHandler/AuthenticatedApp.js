@@ -9,10 +9,10 @@ import { Flex, FlexItem } from '../styles/Flex';
 function AuthenticatedApp() {
 	return (
 		<Flex flex="1" justify="center">
-			<Flex flex="1" direction="column" maxWidth="1200">
+			<Flex flex="1" direction="column" maxWidth="1200px">
 				<Header />
-				<Flex justify="center">
-					<FlexItem width="1200px">
+				<Flex justify="center" width="100%">
+					<FlexItem minWidth="600px">
 						<Switch>
 							<Route path="/profile">
 								<Profile />
