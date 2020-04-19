@@ -17,9 +17,12 @@ import AppHandler from '../appHandler/AppHandler';
 import Theme from '../styles/Theme';
 import './App.css';
 
+// TODO: add production url when deployed for the first time
+const BASE_URL = process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/graphql/' : '';
+
 function App() {
 	const httpLink = new HttpLink({
-		uri: 'http://127.0.0.1:8000/graphql/',
+		uri: BASE_URL,
 	});
 
 	const errorLink = onError(({ graphQLErrors, networkError, operation, response, forward }) => {
@@ -29,7 +32,7 @@ function App() {
 					const refreshToken = getLocalRefreshToken();
 					const oldHeaders = operation.getContext().headers;
 					response.errors = null;
-					fetch('http://localhost:8000/graphql/', {
+					fetch(BASE_URL, {
 						method: 'POST',
 						headers: {
 							'content-type': 'application/json',
@@ -53,7 +56,7 @@ function App() {
 							return forward(operation);
 						})
 						.catch((err) => {
-							console.log(err);
+							// TODO: add error handling here
 						});
 				}
 			}
@@ -74,8 +77,8 @@ function App() {
 	const client = new ApolloClient({
 		cache: new InMemoryCache(),
 		link: authLink.concat(errorLink.concat(httpLink)),
-		onError: (e) => {
-			console.log(e);
+		onError: (err) => {
+			// TODO: add error handling here
 		},
 	});
 
