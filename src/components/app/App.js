@@ -22,12 +22,13 @@ function App() {
 		uri: 'http://127.0.0.1:8000/graphql/',
 	});
 
-	const errorLink = onError(({ graphQLErrors, networkError, operation, forward }) => {
+	const errorLink = onError(({ graphQLErrors, networkError, operation, response, forward }) => {
 		if (graphQLErrors) {
 			for (const err of graphQLErrors) {
 				if (err.message === 'Signature has expired') {
 					const refreshToken = getLocalRefreshToken();
 					const oldHeaders = operation.getContext().headers;
+					response.errors = null;
 					fetch('http://localhost:8000/graphql/', {
 						method: 'POST',
 						headers: {
@@ -35,7 +36,7 @@ function App() {
 						},
 						body: `{"query":"mutation {\\n    refreshToken(refreshToken: \\"${refreshToken}\\") {\\n        token\\n        payload\\n        success\\n        errors\\n        refreshToken\\n    }\\n}"}`,
 					})
-						.then((response) => response.json())
+						.then((result) => result.json())
 						.then((result) => {
 							if (result.data.refreshToken.success) {
 								operation.setContext({
