@@ -7,7 +7,7 @@ import styled from 'styled-components/macro';
 import { COLOR_LIGHT, COLOR_DARK } from '../styles/ThemeConstants';
 
 function Tooltip({ children, title, ...props }) {
-	const tooltip = useTooltipState();
+	const tooltip = useTooltipState({ ...props });
 	return (
 		<>
 			<TooltipReference {...tooltip} {...children.props}>
