@@ -23,8 +23,8 @@ export const FlexItem = styled.div`
 	${(props) => props.margin && props.margin.left && `margin-left: ${props.margin.left}px;`}
 	${(props) => props.height && `height: ${props.height};`}
 	${(props) => props.width && `width: ${props.width};`}
-	${(props) => props.minWidth && `min-width: ${`${props.minWidth}px`};`}
-	${(props) => props.maxWidth && `max-width: ${`${props.maxWidth}px`};`}
+	${(props) => props.minWidth && `min-width: ${props.minWidth};`}
+	${(props) => props.maxWidth && `max-width: ${props.maxWidth};`}
 	${(props) => props.background && `background: ${props.background};`}
 	${(props) =>
 		props.fill &&
@@ -38,14 +38,14 @@ export const FlexItem = styled.div`
 		props.gap &&
 		`
 		div, span, a, button, p, img {
-			${props.gap && `margin: ${`${props.gap}px`};`}
+			${props.gap && `margin: ${props.gap}px;`}
 		}
 	`}
 	${(props) =>
 		props.gapBetween &&
 		`
 		div, span, a, button, p, img {
-			margin: ${`${props.gapBetween}px`};
+			margin: ${props.gapBetween}px;
 		}
 
 		div:first-child,
