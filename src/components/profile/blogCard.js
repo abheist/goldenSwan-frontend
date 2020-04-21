@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { COLOR_DARK } from '../styles/ThemeConstants';
 import { MeCaption, MeH5 } from '../styles/Typography';
+import { timeAgo } from '../../helpers/utils';
 
 const BlogImg = styled.div`
 	min-width: 300px;
@@ -27,7 +28,7 @@ const BlogImg = styled.div`
 	background-repeat: no-repeat;
 `;
 
-function BlogCard({ maxWidth }) {
+function BlogCard({ blog }) {
 	return (
 		<>
 			<div
@@ -49,20 +50,17 @@ function BlogCard({ maxWidth }) {
 							margin={{ top: 'unset', bottom: 'unset' }}
 							color={COLOR_DARK}
 						>
-							Officia duis sunt laborum deserunt esse sint sint elit culpa nostrud.
-							Dolore velit
+							{blog.title}
 						</MeH5>
 					</Link>
 					<Link to="#">
 						<MeCaption color={COLOR_DARK}>
-							Tempor do officia occaecat nisi. Nulla ullamco aute aliqua occaecat
-							velit. Ullamco in esse excepteur officia ea dolore occaecat cillum sit.
-							Incididunt amet minim velit ipsum aliqua eu qui tempor dolor minim
-							ullamco. Sit magna in est culpa voluptate sit.
+							{blog.subtitle.substring(0, 255)}
+							{blog.subtitle.length > 255 && '...'}
 						</MeCaption>
 					</Link>
 					<Link to="#">
-						<MeCaption color={COLOR_DARK}>June 20, 2014</MeCaption>
+						<MeCaption color={COLOR_DARK}>{timeAgo(blog.created, true)}</MeCaption>
 					</Link>
 				</div>
 			</div>
