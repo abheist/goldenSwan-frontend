@@ -14,7 +14,7 @@ import FormGroup from '../../styles/FormGroup';
 function EditProfile(props) {
 	return (
 		<>
-			<Flex direction="column" align="center">
+			<Flex direction="column" align="center" maxWidth="900px">
 				<ProfilePic background="https://placekitten.com/120/120" />
 				<Spacer height="40px" />
 				<Formik
