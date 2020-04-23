@@ -3,7 +3,6 @@ import {
 	COLOR_PRIMARY_LIGHT,
 	COLOR_BACKGROUND,
 	COLOR_LIGHT,
-	COLOR_GRAY,
 	COLOR_GRAY_MEDIUM,
 } from './ThemeConstants';
 import { MeCaption } from './Typography';
@@ -42,7 +41,8 @@ export const MeTextInput = styled.input`
 
 	${(props) => props.height && `height: ${props.height};`}
 	${(props) => props.fontSize && `font-size: ${props.fontSize};`}
-	
+
+
 	&:hover {
 		background-color: ${COLOR_LIGHT};
 		border-color: rgba(0, 0, 0, 0.1);
@@ -63,34 +63,4 @@ export const MeTextInput = styled.input`
 export const MeErrorMessage = styled(MeCaption)`
 	color: red;
 	margin: 4px 0 0 0;
-`;
-
-export const FormGroup = styled.div`
-	height: 96px;
-
-	${(props) => props.margin && props.margin.top && `margin-top: ${props.margin.top}px;`}
-	${(props) => props.margin && props.margin.right && `margin-right: ${props.margin.right}px;`}
-	${(props) => props.margin && props.margin.bottom && `margin-bottom: ${props.margin.bottom}px;`}
-	${(props) => props.margin && props.margin.left && `margin-left: ${props.margin.left}px;`}
-	${(props) => props.width && `width: ${props.width};`}
-
-	label {
-		display: block;
-		font-style: normal;
-		font-weight: bold;
-		font-size: 15px;
-		line-height: 18px;
-		letter-spacing: 0.25px;
-		margin: 14px 0 4px;
-	}
-	
-	${(props) =>
-		props.appearance &&
-		props.appearance === 'outline' &&
-		`
-		${MeTextInput} {
-			border: 1px solid ${COLOR_GRAY};
-		}
-	`}
-
 `;

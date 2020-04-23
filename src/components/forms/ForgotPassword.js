@@ -13,9 +13,10 @@ import outlookLogo from '../../assets/img/yahooMailLogo.svg';
 import { QL_MUTATION_SEND_RESET_PASSWORD_EMAIL } from '../../graphql/mutations/authentication';
 import { Flex, FlexItem } from '../styles/Flex';
 import MeButton from '../styles/MeButton';
-import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
+import { MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
 import { COLOR_PRIMARY, COLOR_PRIMARY_DARK } from '../styles/ThemeConstants';
 import { MeBody2, MeCaption, MeH4, MeH5, MeH6 } from '../styles/Typography';
+import FormGroup from '../styles/FormGroup';
 // eslint-disable-next-line no-unused-vars
 
 function ForgotPasswordForm() {

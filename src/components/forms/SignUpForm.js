@@ -14,9 +14,10 @@ import { generateUsername } from '../../helpers/authenticatedUser';
 import { Divider } from '../styles/Divider';
 import { Flex, FlexItem } from '../styles/Flex';
 import MeButton from '../styles/MeButton';
-import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
+import { MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
 import { COLOR_PRIMARY } from '../styles/ThemeConstants';
 import { MeBody2, MeH4, MeH5, MeH6 } from '../styles/Typography';
+import FormGroup from '../styles/FormGroup';
 // eslint-disable-next-line no-unused-vars
 
 function SignUpForm() {

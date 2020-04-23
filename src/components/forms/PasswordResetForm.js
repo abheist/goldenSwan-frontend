@@ -7,7 +7,8 @@ import * as Yup from 'yup';
 import { QL_MUTATION_PASSWORD_RESET_WITHOUT_OLD_PASSWORD } from '../../graphql/mutations/authentication';
 import { Flex, FlexItem } from '../styles/Flex';
 import MeButton from '../styles/MeButton';
-import { FormGroup, MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
+import { MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
+import FormGroup from '../styles/FormGroup';
 
 function PasswordResetForm() {
 	const [doPasswordChange, { data }] = useMutation(
