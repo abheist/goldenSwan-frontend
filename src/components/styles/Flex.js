@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 import PropTypes from 'prop-types';
-import { COLORS } from './ThemeConstants';
+import { COLORS, COLOR_PRIMARY_LIGHT } from './ThemeConstants';
 
 export const FlexItem = styled.div`
 	box-sizing: border-box;
@@ -64,6 +64,17 @@ export const FlexItem = styled.div`
 		p:last-child,
 		img:last-child {
 			margin-right: 0;
+		}
+	`}
+
+
+	${(props) =>
+		props.glow &&
+		`
+		&:hover {
+			border-radius: 8px;
+			border-color: rgba(0, 0, 0, 0.1);
+			box-shadow: 0 0 0 4px ${COLOR_PRIMARY_LIGHT};
 		}
 	`}
 `;
