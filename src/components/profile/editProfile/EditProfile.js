@@ -1,11 +1,15 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { Flex } from '../../styles/Flex';
+import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
+import { Flex, FlexItem } from '../../styles/Flex';
 import MeButton from '../../styles/MeButton';
-import { FormGroup, MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
+import { MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
 import Spacer from '../../styles/Spacer';
 import { ProfilePic } from '../profileComponents';
+import { MeH6 } from '../../styles/Typography';
+import PrefixIcon from '../../styles/PrefixIcon';
+import FormGroup from '../../styles/FormGroup';
 
 function EditProfile(props) {
 	return (
@@ -52,11 +56,63 @@ function EditProfile(props) {
 									as={MeTextInput}
 									name="bio"
 									type="text"
-									width="100%"
 									placeholder="Philosopher, meditator, spiritual teacher..."
 								/>
 								<ErrorMessage component={MeErrorMessage} name="bio" />
 							</FormGroup>
+							<FlexItem width="100%">
+								<MeH6>Social links</MeH6>
+							</FlexItem>
+							<Flex wrap="wrap">
+								<FormGroup width="calc(50% - 30px)" flex>
+									<PrefixIcon>
+										<Facebook />
+									</PrefixIcon>
+									<Field
+										as={MeTextInput}
+										name="bio"
+										type="text"
+										placeholder="abheist"
+									/>
+									<ErrorMessage component={MeErrorMessage} name="bio" />
+								</FormGroup>
+								<FormGroup width="calc(50% - 30px)" flex>
+									<PrefixIcon>
+										<Twitter />
+									</PrefixIcon>
+									<Field
+										as={MeTextInput}
+										name="bio"
+										type="text"
+										placeholder="abheist"
+									/>
+									<ErrorMessage component={MeErrorMessage} name="bio" />
+								</FormGroup>
+								<FormGroup width="calc(50% - 30px)" flex>
+									<PrefixIcon>
+										<Instagram />
+									</PrefixIcon>
+									<Field
+										as={MeTextInput}
+										name="bio"
+										type="text"
+										placeholder="abheist"
+									/>
+									<ErrorMessage component={MeErrorMessage} name="bio" />
+								</FormGroup>
+								<FormGroup width="calc(50% - 30px)" flex>
+									<PrefixIcon>
+										<Linkedin />
+									</PrefixIcon>
+									<Field
+										as={MeTextInput}
+										name="bio"
+										type="text"
+										placeholder="abheist"
+									/>
+									<ErrorMessage component={MeErrorMessage} name="bio" />
+								</FormGroup>
+							</Flex>
 						</Flex>
 						<Flex justify="flex-end">
 							<MeButton type="submit" kind="primary">
@@ -66,6 +122,7 @@ function EditProfile(props) {
 					</Form>
 				</Formik>
 			</Flex>
+			<Spacer height="80px" />
 		</>
 	);
 }
