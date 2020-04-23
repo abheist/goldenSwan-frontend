@@ -19,7 +19,6 @@ export const MeTextInput = styled.input`
 	font-weight: 400;
 	height: 40px;
 	letter-spacing: normal;
-	margin: 0 8px 0 0;
 	outline-style: none;
 	transition-property: background-color, outline, color, box-shadow, -webkit-box-shadow;
 	transition-delay: 0s;
