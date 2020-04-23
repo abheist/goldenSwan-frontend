@@ -5,6 +5,7 @@ import Header from '../header/Header';
 import Home from '../home/Home';
 import Profile from '../profile/Profile';
 import { Flex, FlexItem } from '../styles/Flex';
+import EditProfile from '../profile/editProfile/EditProfile';
 
 function AuthenticatedApp() {
 	return (
@@ -22,6 +23,9 @@ function AuthenticatedApp() {
 							</Route>
 							<Route path="/profile">
 								<Profile />
+							</Route>
+							<Route path="/edit-profile">
+								<EditProfile />
 							</Route>
 						</Switch>
 					</FlexItem>
