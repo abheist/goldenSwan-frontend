@@ -9,24 +9,24 @@ import { Flex, FlexItem } from '../styles/Flex';
 function AuthenticatedApp() {
 	return (
 		<Flex flex="1" justify="center">
-			<Flex flex="1" direction="column" maxWidth="1200px">
+			<div>
 				<Header />
 				<Flex justify="center" width="100%">
-					<FlexItem minWidth="600px">
+					<FlexItem>
 						<Switch>
-							<Route path="/profile">
-								<Profile />
+							<Route exact path="/">
+								<Home />
 							</Route>
 							<Route path="/write">
 								<CreateArticle />
 							</Route>
-							<Route exact path="/">
-								<Home />
+							<Route path="/profile">
+								<Profile />
 							</Route>
 						</Switch>
 					</FlexItem>
 				</Flex>
-			</Flex>
+			</div>
 		</Flex>
 	);
 }
