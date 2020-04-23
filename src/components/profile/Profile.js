@@ -16,13 +16,13 @@ function Profile() {
 	return (
 		<>
 			<ProfileHeader
-				username={data.user.username}
-				firstname={data.user.firstName}
-				lastname={data.user.lastName}
-				profilePic={data.user.profilePic}
+				username={data?.user?.username}
+				firstname={data?.user?.firstName}
+				lastname={data?.user?.lastName}
+				profilePic={data?.user?.profilePic}
 			/>
 			<Spacer height="60px" />
-			<BlogList blogs={data.user.articleSet} />
+			<BlogList blogs={data?.user?.articleSet} />
 			<Spacer height="150px" />
 		</>
 	);
