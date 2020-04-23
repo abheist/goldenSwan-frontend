@@ -14,7 +14,7 @@ import FormGroup from '../../styles/FormGroup';
 function EditProfile(props) {
 	return (
 		<>
-			<Flex direction="column" align="center" maxWidth="900px">
+			<Flex direction="column" align="center" maxWidth="980px" margin={{ top: 20 }}>
 				<ProfilePic background="https://placekitten.com/120/120" />
 				<Spacer height="40px" />
 				<Formik
@@ -131,7 +131,8 @@ function EditProfile(props) {
 								</FormGroup>
 							</Flex>
 						</Flex>
-						<Flex justify="flex-end">
+						<Flex justify="flex-end" gapBetween="10">
+							<MeButton type="submit">Cancel</MeButton>
 							<MeButton type="submit" kind="primary">
 								Save
 							</MeButton>

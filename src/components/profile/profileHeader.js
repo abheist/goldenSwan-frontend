@@ -12,7 +12,7 @@ function ProfileHeader({ firstname, lastname, bio, profilePic }) {
 	return (
 		<Flex justify="center" align="center" margin={{ top: 20 }} direction="column">
 			<ProfilePic background="https://placekitten.com/120/120" />
-			<MeH4 margin={{ top: '16px', bottom: '8px' }} lineHeight="1rem">
+			<MeH4 margin={{ top: '42px', bottom: '8px' }} lineHeight="1rem">
 				{firstname} {lastname}
 			</MeH4>
 			<MeBody2 textAlign="center" lineHeight="1rem" maxWidth="600">
