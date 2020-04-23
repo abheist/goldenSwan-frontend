@@ -5,7 +5,7 @@ import { Flex, FlexItem } from '../styles/Flex';
 function BlogList({ blogs }) {
 	return (
 		<Flex justify="space-between" wrap="wrap" maxWidth="980px">
-			{blogs.map((blog) => (
+			{blogs?.map((blog) => (
 				<FlexItem
 					flex="4"
 					minWidth="300px"
