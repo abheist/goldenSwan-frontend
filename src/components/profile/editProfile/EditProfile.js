@@ -21,10 +21,19 @@ function EditProfile(props) {
 					initialValues={{
 						firstname: '',
 						lastname: '',
+						bio: '',
+						facebook: '',
+						twitter: '',
+						instagram: '',
+						linkedin: '',
 					}}
 					validationSchema={Yup.object({
 						firstname: Yup.string().required('Required!'),
 						lastname: Yup.string().required('Required!'),
+						facebook: Yup.string(),
+						twitter: Yup.string(),
+						instagram: Yup.string(),
+						linkedin: Yup.string(),
 					})}
 					onSubmit={(values) => {}}
 				>
@@ -63,54 +72,62 @@ function EditProfile(props) {
 							<FlexItem width="100%">
 								<MeH6>Social links</MeH6>
 							</FlexItem>
-							<Flex wrap="wrap">
-								<FormGroup width="calc(50% - 30px)" flex>
-									<PrefixIcon>
-										<Facebook />
-									</PrefixIcon>
-									<Field
-										as={MeTextInput}
-										name="bio"
-										type="text"
-										placeholder="abheist"
-									/>
-									<ErrorMessage component={MeErrorMessage} name="bio" />
+							<Flex width="100%" justify="space-between" wrap="wrap">
+								<FormGroup width="calc(50% - 30px)">
+									<Flex glow>
+										<PrefixIcon>
+											<Facebook />
+										</PrefixIcon>
+										<Field
+											as={MeTextInput}
+											name="facebook"
+											type="text"
+											placeholder="abheist"
+										/>
+									</Flex>
+									<ErrorMessage component={MeErrorMessage} name="facebook" />
 								</FormGroup>
-								<FormGroup width="calc(50% - 30px)" flex>
-									<PrefixIcon>
-										<Twitter />
-									</PrefixIcon>
-									<Field
-										as={MeTextInput}
-										name="bio"
-										type="text"
-										placeholder="abheist"
-									/>
-									<ErrorMessage component={MeErrorMessage} name="bio" />
+								<FormGroup width="calc(50% - 30px)">
+									<Flex glow>
+										<PrefixIcon>
+											<Twitter />
+										</PrefixIcon>
+										<Field
+											as={MeTextInput}
+											name="twitter"
+											type="text"
+											placeholder="abheist"
+										/>
+									</Flex>
+									<ErrorMessage component={MeErrorMessage} name="twitter" />
 								</FormGroup>
-								<FormGroup width="calc(50% - 30px)" flex>
-									<PrefixIcon>
-										<Instagram />
-									</PrefixIcon>
-									<Field
-										as={MeTextInput}
-										name="bio"
-										type="text"
-										placeholder="abheist"
-									/>
-									<ErrorMessage component={MeErrorMessage} name="bio" />
+								<FormGroup width="calc(50% - 30px)">
+									<Flex glow>
+										<PrefixIcon>
+											<Instagram />
+										</PrefixIcon>
+										<Field
+											as={MeTextInput}
+											name="instagram"
+											type="text"
+											placeholder="abheist"
+										/>
+									</Flex>
+									<ErrorMessage component={MeErrorMessage} name="instagram" />
 								</FormGroup>
-								<FormGroup width="calc(50% - 30px)" flex>
-									<PrefixIcon>
-										<Linkedin />
-									</PrefixIcon>
-									<Field
-										as={MeTextInput}
-										name="bio"
-										type="text"
-										placeholder="abheist"
-									/>
-									<ErrorMessage component={MeErrorMessage} name="bio" />
+								<FormGroup width="calc(50% - 30px)">
+									<Flex glow>
+										<PrefixIcon>
+											<Linkedin />
+										</PrefixIcon>
+										<Field
+											as={MeTextInput}
+											name="linkedin"
+											type="text"
+											placeholder="abheist"
+										/>
+									</Flex>
+									<ErrorMessage component={MeErrorMessage} name="linkedin" />
 								</FormGroup>
 							</Flex>
 						</Flex>
