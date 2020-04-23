@@ -53,7 +53,7 @@ function EditProfile(props) {
 									name="bio"
 									type="text"
 									width="100%"
-									placeholder="philosopher, meditator, spiritual teacher, and religious leader"
+									placeholder="Philosopher, meditator, spiritual teacher..."
 								/>
 								<ErrorMessage component={MeErrorMessage} name="bio" />
 							</FormGroup>
