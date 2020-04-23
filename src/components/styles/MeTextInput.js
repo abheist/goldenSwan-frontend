@@ -1,5 +1,11 @@
 import styled from 'styled-components/macro';
-import { COLOR_PRIMARY_LIGHT, COLOR_BACKGROUND, COLOR_LIGHT } from './ThemeConstants';
+import {
+	COLOR_PRIMARY_LIGHT,
+	COLOR_BACKGROUND,
+	COLOR_LIGHT,
+	COLOR_GRAY,
+	COLOR_GRAY_MEDIUM,
+} from './ThemeConstants';
 import { MeCaption } from './Typography';
 
 export const MeTextInput = styled.input`
@@ -21,7 +27,7 @@ export const MeTextInput = styled.input`
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
 
-	${(props) => props.width && `width: ${props.width};`}
+	${(props) => `width: ${props.width || '100%'};`}
 	${(props) => props.minWidth && `min-width: ${props.minWidth};`}
 
 	${(props) => props.margin && props.margin.top && `margin-top: ${props.margin.top}px;`}
@@ -48,6 +54,10 @@ export const MeTextInput = styled.input`
 		border-color: ${COLOR_PRIMARY_LIGHT};
 		box-shadow: 0 0 0 4px ${COLOR_PRIMARY_LIGHT};
 	}
+
+	&::placeholder {
+		color: ${COLOR_GRAY_MEDIUM};
+	}
 `;
 
 export const MeErrorMessage = styled(MeCaption)`
@@ -73,5 +83,14 @@ export const FormGroup = styled.div`
 		letter-spacing: 0.25px;
 		margin: 14px 0 4px;
 	}
+	
+	${(props) =>
+		props.appearance &&
+		props.appearance === 'outline' &&
+		`
+		${MeTextInput} {
+			border: 1px solid ${COLOR_GRAY};
+		}
+	`}
 
 `;
