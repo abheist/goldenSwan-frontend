@@ -1,20 +1,19 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
 import theme from 'styled-theming';
 import {
-	COLOR_LIGHT,
 	COLOR_DARK,
-	FONT_SAN_SERIF,
-	FONT_MONO_SPACED,
-	COLOR_PRIMARY_DARK,
+	COLOR_LIGHT,
 	COLOR_PRIMARY,
-	COLOR_LIGHT_GRAY,
+	COLOR_PRIMARY_DARK,
 	COLOR_PRIMARY_DARKER,
+	FONT_MONO_SPACED,
+	FONT_SAN_SERIF,
 } from './ThemeConstants';
 
 export const backgroundColor = theme('mode', {
-	light: COLOR_LIGHT_GRAY,
+	light: COLOR_LIGHT,
 	dark: COLOR_DARK,
 });
 
@@ -48,6 +47,8 @@ const GlobalStyle = createGlobalStyle`
 		text-decoration: none;
 		letter-spacing: 0px;
 		color: ${COLOR_PRIMARY_DARK};
+		padding: 0;
+		margin: 0;
 
 		&:hover {
 			color: ${COLOR_PRIMARY_DARKER};
