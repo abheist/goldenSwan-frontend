@@ -23,11 +23,11 @@ const buttonColors = theme.variants('mode', 'kind', {
 	default: {
 		light: css`
 			color: ${COLOR_DARK};
-			background: transparent;
+			background-color: rgba(0, 0, 0, 0.05);
 
 			&:not([aria-disabled='true']) {
 				&:hover {
-					background-color: rgba(0, 0, 0, 0.05);
+					background-color: rgba(0, 0, 0, 0.1);
 				}
 				&:active,
 				&[aria-expanded='true'] {
