@@ -6,6 +6,7 @@
 		"@apollo/client": "^3.0.0-beta.43",
 		"@apollo/link-context": "^2.0.0-beta.3",
 		"@apollo/link-error": "^2.0.0-beta.3",
+		"cloudinary-react": "^1.5.0",
 		"draft-js": "^0.11.5",
 		"filepond": "^4.13.4",
 		"filepond-plugin-image-exif-orientation": "^1.0.7",

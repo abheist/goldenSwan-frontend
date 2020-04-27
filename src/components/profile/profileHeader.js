@@ -5,8 +5,8 @@ import { Flex } from '../styles/Flex';
 import IconButton from '../styles/IconButton';
 import { MeBody2, MeH4 } from '../styles/Typography';
 import Tooltip from '../tooltip/Tooltip';
-import { ProfilePic } from './profileComponents';
 import MeButton from '../styles/MeButton';
+import ProfilePic from './profilePic';
 
 function ProfileHeader({ firstname, lastname, bio, profilePic }) {
 	return (

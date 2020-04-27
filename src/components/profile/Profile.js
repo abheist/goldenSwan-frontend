@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client';
 import Spacer from '../styles/Spacer';
 import BlogList from './blogList';
 import ProfileHeader from './profileHeader';
-import QL_QUERY_PROFILE from '../../graphql/users';
+import { QL_QUERY_PROFILE } from '../../graphql/users';
 
 function Profile() {
 	const { loading, error, data } = useQuery(QL_QUERY_PROFILE, {

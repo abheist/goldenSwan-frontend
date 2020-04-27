@@ -1,16 +1,6 @@
 import { gql } from '@apollo/client';
 
-// export const QL_QUERY_USERS = gql`
-//     users {
-//         id
-//         username
-//         firstName
-//         lastName
-//         isActive
-//     }
-// `;
-
-const QL_QUERY_PROFILE = gql`
+export const QL_QUERY_PROFILE = gql`
 	query user($userId: ID!) {
 		user(userId: $userId) {
 			id
@@ -31,6 +21,15 @@ const QL_QUERY_PROFILE = gql`
 	}
 `;
 
-export default QL_QUERY_PROFILE;
-
-// export const QL_QUERY_USER_SEARCH = gql``;
+export const QL_MUTATION_UPDATE_USER = gql`
+	mutation UpdateUser($pk: ID!, $firstname: String, $file: Upload) {
+		updateUser(pk: $pk, firstName: $firstname, profilePic: $file) {
+			user {
+				id
+				username
+				firstName
+				profilePic
+			}
+		}
+	}
+`;
