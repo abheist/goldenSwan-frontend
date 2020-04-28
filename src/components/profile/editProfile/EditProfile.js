@@ -6,10 +6,10 @@ import { Flex, FlexItem } from '../../styles/Flex';
 import MeButton from '../../styles/MeButton';
 import { MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
 import Spacer from '../../styles/Spacer';
-import { ProfilePic } from '../profileComponents';
 import { MeH6 } from '../../styles/Typography';
 import PrefixIcon from '../../styles/PrefixIcon';
 import FormGroup from '../../styles/FormGroup';
+import ProfilePic from '../profilePic';
 
 function EditProfile(props) {
 	return (
