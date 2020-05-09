@@ -11,7 +11,7 @@ import PrefixIcon from '../../styles/PrefixIcon';
 import FormGroup from '../../styles/FormGroup';
 import ProfilePic from '../profilePic';
 
-function EditProfile(props) {
+function EditProfile() {
 	return (
 		<>
 			<Flex direction="column" align="center" maxWidth="980px" margin={{ top: 20 }}>

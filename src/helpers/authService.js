@@ -21,3 +21,7 @@ export const setLocalRefreshToken = (token) => {
 export const setLocalExpTime = (token) => {
 	window.localStorage.setItem(AUTH_TOKEN_EXPIRY_TIME, token);
 };
+
+export const logoutUser = () => {
+	window.localStorage.clear();
+};

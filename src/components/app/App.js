@@ -12,6 +12,7 @@ import {
 	setLocalExpTime,
 	setLocalRefreshToken,
 	setLocalToken,
+	logoutUser,
 } from '../../helpers/authService';
 import AppHandler from '../appHandler/AppHandler';
 import Theme from '../styles/Theme';
@@ -41,7 +42,7 @@ function App() {
 					})
 						.then((result) => result.json())
 						.then((result) => {
-							if (result.data.refreshToken.success) {
+							if (result?.data?.refreshToken?.success) {
 								operation.setContext({
 									headers: {
 										...oldHeaders,
@@ -53,10 +54,8 @@ function App() {
 								setLocalExpTime(result.data.refreshToken.payload?.exp);
 								return forward(operation);
 							}
-							return forward(operation);
-						})
-						.catch((err) => {
-							// TODO: add error handling here
+							logoutUser();
+							return null;
 						});
 				}
 			}
