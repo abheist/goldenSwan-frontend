@@ -10,13 +10,15 @@ import './Draft.css';
 import { getBlockStyle, styleMap } from './editorUtils';
 import InlineStyleControls from './InlineStyleControls';
 import { MeTextInput } from '../styles/MeTextInput';
+import { MeH1, MeH2 } from '../styles/Typography';
 
-function WriteUpFunc({ articleSlug, articleContent }) {
-	const [editorState, setEditorState] = useState(
+function WriteUpFunc({ articleTitle, articleSubTitle, articleSlug, articleContent, readOnly }) {
+	const [editorState, setEditorState] = useState(() =>
 		EditorState.createWithContent(convertFromRaw(JSON.parse(articleContent)))
 	);
-	const [title, setTitle] = useState(null);
-	const [subtitle, setSubtitle] = useState(null);
+
+	const [title, setTitle] = useState(articleTitle || '');
+	const [subtitle, setSubtitle] = useState(articleSubTitle || '');
 
 	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
 
@@ -33,20 +35,22 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 	}, [updatedArticle]);
 
 	useEffect(() => {
-		const currentContent = editorState.getCurrentContent();
-		if (articleSlug && currentContent.hasText()) {
-			updateArticle({
-				variables: {
-					slug: articleSlug,
-					title: title || '',
-					subtitle: subtitle || '',
-					content: JSON.stringify(convertToRaw(currentContent)),
-				},
-			});
-		} else {
-			// console.log('no slug or content');
+		if (!readOnly) {
+			const currentContent = editorState.getCurrentContent();
+			if (articleSlug && currentContent.hasText()) {
+				updateArticle({
+					variables: {
+						slug: articleSlug,
+						title: title || '',
+						subtitle: subtitle || '',
+						content: JSON.stringify(convertToRaw(currentContent)),
+					},
+				});
+			} else {
+				// console.log('no slug or content');
+			}
 		}
-	}, [editorState, articleSlug, updateArticle, title, subtitle]);
+	}, [readOnly, editorState, articleSlug, updateArticle, title, subtitle]);
 
 	const handleKeyCommand = (command) => {
 		const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -75,25 +79,45 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 	if (!editorState && !articleSlug) return <div>Content Loading...</div>;
 	return (
 		<>
-			<MeTextInput
-				width="100%"
-				margin={{ top: 20 }}
-				height="50px"
-				placeholder="Title"
-				fontSize="24px"
-				onChange={(event) => setTitle(event.target.value)}
-			/>
-			<MeTextInput
-				width="100%"
-				margin={{ bottom: 20 }}
-				height="40px"
-				placeholder="Subtitle"
-				fontSize="20px"
-				onChange={(event) => setSubtitle(event.target.value)}
-			/>
+			{readOnly ? (
+				<>
+					<MeH1>{title}</MeH1>
+					<MeH2>{subtitle}</MeH2>
+				</>
+			) : (
+				<>
+					<MeTextInput
+						width="100%"
+						margin={{ top: 20 }}
+						height="50px"
+						placeholder="Title"
+						fontSize="24px"
+						value={title}
+						disabled={readOnly}
+						onChange={(event) => setTitle(event.target.value)}
+					/>
+					<MeTextInput
+						width="100%"
+						margin={{ bottom: 20 }}
+						height="40px"
+						placeholder="Subtitle"
+						fontSize="20px"
+						disabled={readOnly}
+						value={subtitle}
+						onChange={(event) => setSubtitle(event.target.value)}
+					/>
+				</>
+			)}
 			<div className="RichEditor-root">
-				<BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
-				<InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle} />
+				{!readOnly && (
+					<>
+						<BlockStyleControls editorState={editorState} onToggle={toggleBlockType} />
+						<InlineStyleControls
+							editorState={editorState}
+							onToggle={toggleInlineStyle}
+						/>
+					</>
+				)}
 				<div className={className} onClick={focusEditor}>
 					<Editor
 						blockStyleFn={getBlockStyle}
@@ -104,6 +128,7 @@ function WriteUpFunc({ articleSlug, articleContent }) {
 						ref={editor}
 						placeholder="Tell a story..."
 						spellCheck
+						readOnly={readOnly}
 					/>
 				</div>
 			</div>

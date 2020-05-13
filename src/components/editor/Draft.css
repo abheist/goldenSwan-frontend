@@ -7,8 +7,9 @@
 .RichEditor-editor {
 	border-top: 1px solid #ddd;
 	cursor: text;
-	font-size: 16px;
-	margin-top: 10px;
+	font-size: 17px;
+	line-height: 28px;
+	margin: 70px 0;
 }
 
 .RichEditor-editor .public-DraftEditorPlaceholder-root,
@@ -30,14 +31,18 @@
 	color: #666;
 	font-style: italic;
 	margin: 16px 0;
-	padding: 10px 20px;
+	padding: 10px 30px;
 }
 
 .RichEditor-editor .public-DraftStyleDefault-pre {
 	background-color: rgba(0, 0, 0, 0.05);
 	font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
 	font-size: 16px;
-	padding: 20px;
+	padding: 20px 30px;
+}
+
+.public-DraftStyleDefault-block {
+	margin: 32px 0;
 }
 
 .RichEditor-controls {
