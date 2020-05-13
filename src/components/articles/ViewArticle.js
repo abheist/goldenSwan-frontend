@@ -17,6 +17,7 @@ function ViewArticle() {
 		<WriteUpFunc
 			articleSlug={articleSlug}
 			articleTitle={data.article.title}
+			articleSubTitle={data.article.subtitle}
 			articleContent={data.article.content}
 			readOnly
 		/>

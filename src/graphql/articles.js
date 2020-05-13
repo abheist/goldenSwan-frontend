@@ -49,6 +49,7 @@ export const QL_MUTATION_ARTICLE = gql`
 	query article($slug: String!) {
 		article(slug: $slug) {
 			title
+			subtitle
 			slug
 			content
 			created
