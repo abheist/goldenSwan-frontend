@@ -36,7 +36,7 @@ function BlogCard({ blog }) {
 					background: #fff;
 				`}
 			>
-				<Link to="#">
+				<Link to={`/view/${blog.slug}`}>
 					<BlogImg background="https://placekitten.com/300/200" />
 				</Link>
 				<div
@@ -44,7 +44,7 @@ function BlogCard({ blog }) {
 						padding: 0 16px 8px;
 					`}
 				>
-					<Link to="#">
+					<Link to={`/view/${blog.slug}`}>
 						<MeH5
 							padding={{ top: '16px', bottom: '8px' }}
 							margin={{ top: 'unset', bottom: 'unset' }}
@@ -53,13 +53,13 @@ function BlogCard({ blog }) {
 							{blog.title}
 						</MeH5>
 					</Link>
-					<Link to="#">
+					<Link to={`/view/${blog.slug}`}>
 						<MeCaption color={COLOR_DARK}>
 							{blog.subtitle.substring(0, 255)}
 							{blog.subtitle.length > 255 && '...'}
 						</MeCaption>
 					</Link>
-					<Link to="#">
+					<Link to={`/view/${blog.slug}`}>
 						<MeCaption color={COLOR_DARK}>{timeAgo(blog.created, true)}</MeCaption>
 					</Link>
 				</div>

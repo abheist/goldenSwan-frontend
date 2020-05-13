@@ -46,8 +46,8 @@ export const QL_MUTATION_ARTICLES = gql`
 `;
 
 export const QL_MUTATION_ARTICLE = gql`
-	query article($id: String!) {
-		article(id: $id) {
+	query article($slug: String!) {
+		article(slug: $slug) {
 			title
 			slug
 			content

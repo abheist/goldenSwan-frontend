@@ -6,6 +6,7 @@ import Home from '../home/Home';
 import Profile from '../profile/Profile';
 import { Flex, FlexItem } from '../styles/Flex';
 import EditProfile from '../profile/editProfile/EditProfile';
+import ViewArticle from '../articles/ViewArticle';
 
 function AuthenticatedApp() {
 	return (
@@ -20,6 +21,9 @@ function AuthenticatedApp() {
 							</Route>
 							<Route path="/write">
 								<CreateArticle />
+							</Route>
+							<Route path="/view/:articleSlug">
+								<ViewArticle />
 							</Route>
 							<Route path="/profile">
 								<Profile />
