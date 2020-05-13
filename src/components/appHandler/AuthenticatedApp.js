@@ -1,5 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
+import styled from 'styled-components/macro';
 import CreateArticle from '../articles/CreateArticle';
 import Header from '../header/Header';
 import Home from '../home/Home';
@@ -11,7 +13,11 @@ import ViewArticle from '../articles/ViewArticle';
 function AuthenticatedApp() {
 	return (
 		<Flex flex="1" justify="center">
-			<div>
+			<div
+				css={`
+					max-width: 700px;
+				`}
+			>
 				<Header />
 				<Flex justify="center" width="100%">
 					<FlexItem>
