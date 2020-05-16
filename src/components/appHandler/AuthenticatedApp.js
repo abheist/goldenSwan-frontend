@@ -35,7 +35,7 @@ function AuthenticatedApp() {
 							<Route path="/edit/:articleSlug">
 								<UpdateArticle />
 							</Route>
-							<Route path="/profile">
+							<Route path="/@:username">
 								<Profile />
 							</Route>
 							<Route path="/edit-profile">
