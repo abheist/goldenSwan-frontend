@@ -1,13 +1,15 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
 import Spacer from '../styles/Spacer';
 import BlogList from './blogList';
 import ProfileHeader from './profileHeader';
 import { QL_QUERY_PROFILE } from '../../graphql/users';
 
 function Profile() {
+	const { username } = useParams();
 	const { loading, error, data } = useQuery(QL_QUERY_PROFILE, {
-		variables: { userId: 2 },
+		variables: { username },
 	});
 
 	if (error) return <div>Failed to load!</div>;
