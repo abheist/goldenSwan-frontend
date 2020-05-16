@@ -8,7 +8,16 @@ import Tooltip from '../tooltip/Tooltip';
 import MeButton from '../styles/MeButton';
 import ProfilePic from './profilePic';
 
-function ProfileHeader({ firstname, lastname, bio, profilePic }) {
+function ProfileHeader({
+	firstname,
+	lastname,
+	bio,
+	profilePic,
+	facebook,
+	twitter,
+	instagram,
+	linkedin,
+}) {
 	return (
 		<Flex justify="center" align="center" margin={{ top: 20 }} direction="column">
 			<ProfilePic background="https://placekitten.com/120/120" />
@@ -16,29 +25,36 @@ function ProfileHeader({ firstname, lastname, bio, profilePic }) {
 				{firstname} {lastname}
 			</MeH4>
 			<MeBody2 textAlign="center" lineHeight="1rem" maxWidth="600">
-				On a path to solve one of the major global issues. Obsessed with all things related
-				to creativity. Full-Stack Developer and a Designer.
+				{bio}
 			</MeBody2>
 			<Flex gapBetween="5" align="center" justify="center">
 				<Tooltip title="Facebook" placement="bottom">
-					<IconButton>
-						<Facebook size="16px" />
-					</IconButton>
+					<Link to={`https://facebook.com/${facebook}`}>
+						<IconButton>
+							<Facebook size="16px" />
+						</IconButton>
+					</Link>
 				</Tooltip>
 				<Tooltip title="Twitter" placement="bottom">
-					<IconButton>
-						<Twitter size="16px" />
-					</IconButton>
+					<Link to={`https://twitter.com/${twitter}`}>
+						<IconButton>
+							<Twitter size="16px" />
+						</IconButton>
+					</Link>
 				</Tooltip>
 				<Tooltip title="Instagram" placement="bottom">
-					<IconButton>
-						<Instagram size="16px" />
-					</IconButton>
+					<Link to={`https://instagram.com/${instagram}`}>
+						<IconButton>
+							<Instagram size="16px" />
+						</IconButton>
+					</Link>
 				</Tooltip>
 				<Tooltip title="Linkedin" placement="bottom">
-					<IconButton>
-						<Linkedin size="16px" />
-					</IconButton>
+					<Link to={`https://linkedin.com/${linkedin}`}>
+						<IconButton>
+							<Linkedin size="16px" />
+						</IconButton>
+					</Link>
 				</Tooltip>
 				<Link to="edit-profile">
 					<MeButton>Edit profile</MeButton>
