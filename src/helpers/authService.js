@@ -10,6 +10,8 @@ export const getLocalRefreshToken = () => window.localStorage.getItem(AUTH_REFRE
 
 export const getLocalExpTime = () => window.localStorage.getItem(AUTH_TOKEN_EXPIRY_TIME);
 
+export const getLocalUsername = () => window.localStorage.getItem(USERNAME);
+
 export const setLocalToken = (token) => {
 	window.localStorage.setItem(AUTH_TOKEN_NAME, token);
 };
@@ -20,6 +22,10 @@ export const setLocalRefreshToken = (token) => {
 
 export const setLocalExpTime = (token) => {
 	window.localStorage.setItem(AUTH_TOKEN_EXPIRY_TIME, token);
+};
+
+export const setLocalUsername = (username) => {
+	window.localStorage.setItem(USERNAME, username);
 };
 
 export const logoutUser = () => {
