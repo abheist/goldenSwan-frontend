@@ -9,6 +9,7 @@ import Profile from '../profile/Profile';
 import { Flex, FlexItem } from '../styles/Flex';
 import EditProfile from '../profile/editProfile/EditProfile';
 import ViewArticle from '../articles/ViewArticle';
+import UpdateArticle from '../articles/UpdateArticle';
 
 function AuthenticatedApp() {
 	return (
@@ -30,6 +31,9 @@ function AuthenticatedApp() {
 							</Route>
 							<Route path="/view/:articleSlug">
 								<ViewArticle />
+							</Route>
+							<Route path="/edit/:articleSlug">
+								<UpdateArticle />
 							</Route>
 							<Route path="/profile">
 								<Profile />
