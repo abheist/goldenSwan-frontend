@@ -6,6 +6,7 @@ import { Flex, FlexItem } from '../styles/Flex';
 import Avatar from '../styles/Avatar';
 import Tooltip from '../tooltip/Tooltip';
 import IconButton from '../styles/IconButton';
+import UserContext from '../../contexts/UserContext';
 
 function Header() {
 	return (
@@ -22,11 +23,15 @@ function Header() {
 					</Tooltip>
 				</Link>
 				<FlexItem margin={{ left: 35 }}>
-					<Link to="/profile">
-						<Tooltip title="Profile">
-							<Avatar background="https://placekitten.com/60/60" />
-						</Tooltip>
-					</Link>
+					<UserContext.Consumer>
+						{(value) => (
+							<Link to={`/@${value}`}>
+								<Tooltip title="Profile">
+									<Avatar background="https://placekitten.com/60/60" />
+								</Tooltip>
+							</Link>
+						)}
+					</UserContext.Consumer>
 				</FlexItem>
 			</Flex>
 		</Flex>
