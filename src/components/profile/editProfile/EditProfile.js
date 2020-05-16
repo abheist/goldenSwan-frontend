@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
 import * as Yup from 'yup';
 import UserContext from '../../../contexts/UserContext';
@@ -15,18 +15,28 @@ import { MeH6 } from '../../styles/Typography';
 import ProfilePic from '../profilePic';
 
 function EditProfile() {
+	const [data, setData] = useState(() => undefined);
 	const { username, dispatch } = useContext(UserContext);
 
-	const { loading, data } = useQuery(QL_QUERY_PROFILE, {
+	const { loading, data: queryData } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
 	});
 
-	const [
-		updateProfile,
-		{ data: updatedData, loading: updatedLoading, error: updatedError },
-	] = useMutation(QL_MUTATION_UPDATE_USER);
+	const [updateProfile, { data: updatedData }] = useMutation(QL_MUTATION_UPDATE_USER);
 
-	if (loading) return <>Loading...</>;
+	useEffect(() => {
+		if (updatedData) {
+			setData(updatedData);
+		}
+	}, [updatedData]);
+
+	useEffect(() => {
+		if (queryData) {
+			setData(queryData);
+		}
+	}, [queryData]);
+
+	if (loading || !data) return <>Loading...</>;
 
 	return (
 		<>
