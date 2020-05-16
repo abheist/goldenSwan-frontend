@@ -8,6 +8,14 @@ export const QL_QUERY_PROFILE = gql`
 			firstName
 			lastName
 			isActive
+			email
+			dob
+			bio
+			profilePic
+			facebook
+			twitter
+			instagram
+			linkedin
 			articleSet {
 				slug
 				title
@@ -22,13 +30,47 @@ export const QL_QUERY_PROFILE = gql`
 `;
 
 export const QL_MUTATION_UPDATE_USER = gql`
-	mutation UpdateUser($pk: ID!, $firstname: String, $file: Upload) {
-		updateUser(pk: $pk, firstName: $firstname, profilePic: $file) {
+	mutation UpdateUser(
+		$pk: ID!
+		$firstname: String
+		$lastname: String
+		$username: String
+		$email: String
+		$dob: String
+		$bio: String
+		$profilePic: String
+		$facebook: String
+		$twitter: String
+		$instagram: String
+		$linkedin: String
+	) {
+		updateUser(
+			pk: $pk
+			firstName: $firstname
+			lastName: $lastname
+			username: $username
+			email: $email
+			dob: $dob
+			bio: $bio
+			profilePic: $profilePic
+			facebook: $facebook
+			twitter: $twitter
+			instagram: $instagram
+			linkedin: $linkedin
+		) {
 			user {
 				id
-				username
 				firstName
+				lastName
+				username
+				email
+				dob
+				bio
 				profilePic
+				facebook
+				twitter
+				instagram
+				linkedin
 			}
 		}
 	}

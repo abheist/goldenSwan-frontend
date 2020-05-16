@@ -24,8 +24,8 @@ function Header() {
 				</Link>
 				<FlexItem margin={{ left: 35 }}>
 					<UserContext.Consumer>
-						{(value) => (
-							<Link to={`/@${value}`}>
+						{({ username }) => (
+							<Link to={`/@${username}`}>
 								<Tooltip title="Profile">
 									<Avatar background="https://placekitten.com/60/60" />
 								</Tooltip>

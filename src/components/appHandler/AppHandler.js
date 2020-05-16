@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { getLocalToken, getLocalUsername } from '../../helpers/authService';
+import { UserContextProvider } from '../../contexts/UserContext';
+import { getLocalToken } from '../../helpers/authService';
 import AuthenticatedApp from './AuthenticatedApp';
 import UnauthenticatedApp from './UnauthenticatedApp';
-import UserContext from '../../contexts/UserContext';
 
 function AppHandler() {
 	const [token, setToken] = useState(getLocalToken() || undefined);
@@ -16,9 +16,9 @@ function AppHandler() {
 	return (
 		<>
 			{token ? (
-				<UserContext.Provider value={getLocalUsername()}>
+				<UserContextProvider>
 					<AuthenticatedApp />
-				</UserContext.Provider>
+				</UserContextProvider>
 			) : (
 				<UnauthenticatedApp setToken={setToken} />
 			)}
