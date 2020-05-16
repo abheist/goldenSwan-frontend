@@ -22,6 +22,11 @@ function Profile() {
 				firstname={data?.user?.firstName}
 				lastname={data?.user?.lastName}
 				profilePic={data?.user?.profilePic}
+				bio={data?.user?.bio}
+				facebook={data?.user?.facebook}
+				twitter={data?.user?.twitter}
+				instagram={data?.user?.instagram}
+				linkedin={data?.user?.linkedin}
 			/>
 			<Spacer height="60px" />
 			<BlogList blogs={data?.user?.articleSet} />
