@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import * as Yup from 'yup';
 import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
+import { useMutation, useQuery } from '@apollo/client';
 import { Flex, FlexItem } from '../../styles/Flex';
 import MeButton from '../../styles/MeButton';
 import { MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
@@ -11,7 +12,25 @@ import PrefixIcon from '../../styles/PrefixIcon';
 import FormGroup from '../../styles/FormGroup';
 import ProfilePic from '../profilePic';
 
+import UserContext from '../../../contexts/UserContext';
+import { QL_MUTATION_UPDATE_USER, QL_QUERY_PROFILE } from '../../../graphql/users';
+import { setLocalUsername } from '../../../helpers/authService';
+
 function EditProfile() {
+	const { username, dispatch } = useContext(UserContext);
+	console.log(username);
+
+	const { loading, data } = useQuery(QL_QUERY_PROFILE, {
+		variables: { username },
+	});
+
+	const [
+		updateProfile,
+		{ data: updatedData, loading: updatedLoading, error: updatedError },
+	] = useMutation(QL_MUTATION_UPDATE_USER);
+
+	if (loading) return <>Loading...</>;
+
 	return (
 		<>
 			<Flex direction="column" align="center" maxWidth="980px" margin={{ top: 20 }}>
@@ -19,23 +38,43 @@ function EditProfile() {
 				<Spacer height="40px" />
 				<Formik
 					initialValues={{
-						firstname: '',
-						lastname: '',
-						bio: '',
-						facebook: '',
-						twitter: '',
-						instagram: '',
-						linkedin: '',
+						firstname: data?.user?.firstName,
+						lastname: data?.user?.lastName,
+						username: data?.user?.username,
+						bio: data?.user?.bio,
+						facebook: data?.user?.facebook,
+						twitter: data?.user?.twitter,
+						instagram: data?.user?.instagram,
+						linkedin: data?.user?.linkedin,
 					}}
 					validationSchema={Yup.object({
 						firstname: Yup.string().required('Required!'),
 						lastname: Yup.string().required('Required!'),
+						username: Yup.string().required('Required!'),
+						bio: Yup.string(),
 						facebook: Yup.string(),
 						twitter: Yup.string(),
 						instagram: Yup.string(),
 						linkedin: Yup.string(),
 					})}
-					onSubmit={(values) => {}}
+					onSubmit={(values) => {
+						updateProfile({
+							variables: {
+								...data.user,
+								pk: data?.user?.id,
+								firstname: values.firstname,
+								lastname: values.lastname,
+								username: values.username,
+								bio: values.bio,
+								facebook: values.facebook,
+								twitter: values.twitter,
+								instagram: values.instagram,
+								linkedin: values.linkedin,
+							},
+						}).then((localdata) => {
+							dispatch(localdata?.data?.updateUser?.user?.username);
+						});
+					}}
 				>
 					<Form>
 						<Flex justify="space-between" wrap="wrap">
@@ -58,6 +97,18 @@ function EditProfile() {
 									placeholder="Buddha"
 								/>
 								<ErrorMessage component={MeErrorMessage} name="lastname" />
+							</FormGroup>
+							<FormGroup width="calc(50% - 30px)">
+								<Flex glow>
+									<PrefixIcon>@</PrefixIcon>
+									<Field
+										as={MeTextInput}
+										name="username"
+										type="text"
+										placeholder="abheist"
+									/>
+								</Flex>
+								<ErrorMessage component={MeErrorMessage} name="username" />
 							</FormGroup>
 							<FormGroup width="100%">
 								<label htmlFor="bio">Bio</label>
