@@ -1,24 +1,21 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import React, { useContext, useEffect } from 'react';
-import * as Yup from 'yup';
-import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
 import { useMutation, useQuery } from '@apollo/client';
-import { Flex, FlexItem } from '../../styles/Flex';
-import MeButton from '../../styles/MeButton';
-import { MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
-import Spacer from '../../styles/Spacer';
-import { MeH6 } from '../../styles/Typography';
-import PrefixIcon from '../../styles/PrefixIcon';
-import FormGroup from '../../styles/FormGroup';
-import ProfilePic from '../profilePic';
-
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useContext } from 'react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
+import * as Yup from 'yup';
 import UserContext from '../../../contexts/UserContext';
 import { QL_MUTATION_UPDATE_USER, QL_QUERY_PROFILE } from '../../../graphql/users';
-import { setLocalUsername } from '../../../helpers/authService';
+import { Flex, FlexItem } from '../../styles/Flex';
+import FormGroup from '../../styles/FormGroup';
+import MeButton from '../../styles/MeButton';
+import { MeErrorMessage, MeTextInput } from '../../styles/MeTextInput';
+import PrefixIcon from '../../styles/PrefixIcon';
+import Spacer from '../../styles/Spacer';
+import { MeH6 } from '../../styles/Typography';
+import ProfilePic from '../profilePic';
 
 function EditProfile() {
 	const { username, dispatch } = useContext(UserContext);
-	console.log(username);
 
 	const { loading, data } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
