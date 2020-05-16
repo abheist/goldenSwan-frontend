@@ -16,6 +16,7 @@ import {
 	setLocalRefreshToken,
 	setLocalExpTime,
 	getLocalToken,
+	setLocalUsername,
 } from '../../helpers/authService';
 import { MeCaption } from '../styles/Typography';
 import FormGroup from '../styles/FormGroup';
@@ -41,6 +42,7 @@ function LoginForm({ setToken }) {
 		if (verifyTokenData?.verifyToken?.success) {
 			setLocalExpTime(verifyTokenData.verifyToken.payload.exp);
 			setToken(getLocalToken());
+			setLocalUsername(verifyTokenData.verifyToken.payload.username);
 		}
 	}, [verifyTokenData, setToken]);
 
