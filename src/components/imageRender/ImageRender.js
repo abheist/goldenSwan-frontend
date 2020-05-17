@@ -14,9 +14,7 @@ function ImageRender({ publicId, transformations }) {
 		});
 	}, [publicId]);
 
-	if (status === 'loading') {
-		return <div>Loading...</div>;
-	}
+	if (status === 'loading') return <div>Loading...</div>;
 
 	if (error) return <div>Loading...</div>;
 
