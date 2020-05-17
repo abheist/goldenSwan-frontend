@@ -15,7 +15,7 @@ import { MeH6 } from '../../styles/Typography';
 import ImageRender from '../../imageRender/ImageRender';
 
 function EditProfile() {
-	const [data, setData] = useState(undefined);
+	const [data, setData] = useState(null);
 	const { username, dispatch } = useContext(UserContext);
 
 	const { loading, data: queryData } = useQuery(QL_QUERY_PROFILE, {
