@@ -38,7 +38,6 @@ export const QL_MUTATION_UPDATE_USER = gql`
 		$email: String
 		$dob: String
 		$bio: String
-		$profilePic: String
 		$facebook: String
 		$twitter: String
 		$instagram: String
@@ -52,7 +51,6 @@ export const QL_MUTATION_UPDATE_USER = gql`
 			email: $email
 			dob: $dob
 			bio: $bio
-			profilePic: $profilePic
 			facebook: $facebook
 			twitter: $twitter
 			instagram: $instagram

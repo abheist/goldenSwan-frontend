@@ -15,17 +15,17 @@ import { MeH6 } from '../../styles/Typography';
 import ImageRender from '../../imageRender/ImageRender';
 
 function EditProfile() {
-	const [data, setData] = useState(() => undefined);
+	const [data, setData] = useState(undefined);
 	const { username, dispatch } = useContext(UserContext);
-	const [updateProfile, { data: updatedData }] = useMutation(QL_MUTATION_UPDATE_USER);
 
 	const { loading, data: queryData } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
 	});
+	const [updateProfile, { data: updatedData }] = useMutation(QL_MUTATION_UPDATE_USER);
 
 	useEffect(() => {
 		if (updatedData) {
-			setData(updatedData);
+			setData(updatedData.updateUser);
 		}
 	}, [updatedData]);
 
@@ -73,19 +73,20 @@ function EditProfile() {
 						linkedin: Yup.string(),
 					})}
 					onSubmit={(values) => {
+						const dataToUpdate = {
+							...data.user,
+							pk: data?.user?.id,
+							firstname: values.firstname,
+							lastname: values.lastname,
+							username: values.username,
+							bio: values.bio,
+							facebook: values.facebook,
+							twitter: values.twitter,
+							instagram: values.instagram,
+							linkedin: values.linkedin,
+						};
 						updateProfile({
-							variables: {
-								...data.user,
-								pk: data?.user?.id,
-								firstname: values.firstname,
-								lastname: values.lastname,
-								username: values.username,
-								bio: values.bio,
-								facebook: values.facebook,
-								twitter: values.twitter,
-								instagram: values.instagram,
-								linkedin: values.linkedin,
-							},
+							variables: dataToUpdate,
 						}).then((localdata) => {
 							dispatch(localdata?.data?.updateUser?.user?.username);
 						});
