@@ -16,7 +16,7 @@ function ImageRender({ publicId, transformations }) {
 
 	if (status === 'loading') return <div>Loading...</div>;
 
-	if (error) return <div>Loading...</div>;
+	if (error) return <div>error...</div>;
 
 	return (
 		<>
