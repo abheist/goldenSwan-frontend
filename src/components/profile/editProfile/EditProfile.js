@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useContext, useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
 import * as Yup from 'yup';
+import { useImage } from 'use-cloudinary';
 import UserContext from '../../../contexts/UserContext';
 import { QL_MUTATION_UPDATE_USER, QL_QUERY_PROFILE } from '../../../graphql/users';
 import { Flex, FlexItem } from '../../styles/Flex';
@@ -17,6 +18,7 @@ import ProfilePic from '../profilePic';
 function EditProfile() {
 	const [data, setData] = useState(() => undefined);
 	const { username, dispatch } = useContext(UserContext);
+	const { getImage, data: imageData } = useImage({ cloud_name: 'abheist' });
 
 	const { loading, data: queryData } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
@@ -36,12 +38,27 @@ function EditProfile() {
 		}
 	}, [queryData]);
 
+	useEffect(() => {
+		if (data) {
+			getImage({
+				public_id: data?.user?.profilePic,
+				transform_options: {
+					width: 120,
+					height: 120,
+					crop: 'fill',
+					radius: 'max',
+					format: 'png',
+				},
+			});
+		}
+	}, [data]);
+
 	if (loading || !data) return <>Loading...</>;
 
 	return (
 		<>
 			<Flex direction="column" align="center" maxWidth="980px" margin={{ top: 20 }}>
-				<ProfilePic background="https://placekitten.com/120/120" />
+				{imageData ? <ProfilePic background={imageData} /> : <div>no pic</div>}
 				<Spacer height="40px" />
 				<Formik
 					initialValues={{
