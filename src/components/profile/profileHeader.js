@@ -6,7 +6,7 @@ import IconButton from '../styles/IconButton';
 import { MeBody2, MeH4 } from '../styles/Typography';
 import Tooltip from '../tooltip/Tooltip';
 import MeButton from '../styles/MeButton';
-import ProfilePic from './profilePic';
+import ImageRender from '../imageRender/ImageRender';
 
 function ProfileHeader({
 	firstname,
@@ -20,7 +20,16 @@ function ProfileHeader({
 }) {
 	return (
 		<Flex justify="center" align="center" margin={{ top: 20 }} direction="column">
-			<ProfilePic background="https://placekitten.com/120/120" />
+			<ImageRender
+				publicId={profilePic || null}
+				transformations={{
+					width: 120,
+					height: 120,
+					crop: 'fill',
+					radius: 'max',
+					format: 'png',
+				}}
+			/>
 			<MeH4 margin={{ top: '42px', bottom: '8px' }} lineHeight="1rem">
 				{firstname} {lastname}
 			</MeH4>
