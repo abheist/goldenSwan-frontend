@@ -16,7 +16,7 @@ export const QL_QUERY_PROFILE = gql`
 			twitter
 			instagram
 			linkedin
-			articleSet {
+			articles {
 				slug
 				title
 				subtitle
