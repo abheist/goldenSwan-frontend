@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import Spacer from '../styles/Spacer';
@@ -8,9 +8,27 @@ import { QL_QUERY_PROFILE } from '../../graphql/users';
 
 function Profile() {
 	const { username } = useParams();
+	const [published, setPublished] = useState([]);
+	const [unPublished, setUnPublished] = useState([]);
 	const { loading, error, data } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
 	});
+
+	useEffect(() => {
+		const localPublished = [];
+		const localUnPublished = [];
+		if (data?.user?.articles) {
+			for (const i of data?.user?.articles) {
+				if (i.published) {
+					localPublished.push(i);
+				} else {
+					localUnPublished.push(i);
+				}
+			}
+			setPublished(localPublished);
+			setUnPublished(localUnPublished);
+		}
+	}, [data]);
 
 	if (error) return <div>Failed to load!</div>;
 	if (loading) return <div>Loading...</div>;
@@ -29,7 +47,7 @@ function Profile() {
 				linkedin={data?.user?.linkedin}
 			/>
 			<Spacer height="60px" />
-			<BlogList blogs={data?.user?.articleSet} />
+			{published.length ? <BlogList blogs={published} /> : <div>something...</div>}
 			<Spacer height="150px" />
 		</>
 	);
