@@ -41,7 +41,7 @@ function EditProfile() {
 		<>
 			<Flex direction="column" align="center" maxWidth="980px" margin={{ top: 20 }}>
 				<ImageRender
-					publicId={data?.user?.profilePic}
+					publicId={data?.user?.profilePic || null}
 					transformations={{
 						width: 120,
 						height: 120,

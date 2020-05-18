@@ -6,13 +6,15 @@ function ImageRender({ publicId, transformations }) {
 	const { getImage, data, status, error } = useImage({ cloud_name: 'abheist' });
 
 	useEffect(() => {
-		getImage({
-			public_id: publicId,
-			transform_options: {
-				...transformations,
-			},
-		});
-	}, [publicId]);
+		if (publicId) {
+			getImage({
+				public_id: publicId,
+				transform_options: {
+					...transformations,
+				},
+			});
+		}
+	}, [publicId, transformations]);
 
 	if (status === 'loading') return <div>Loading...</div>;
 
