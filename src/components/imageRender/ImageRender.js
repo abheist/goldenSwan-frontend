@@ -14,6 +14,7 @@ function ImageRender({ publicId, transformations }) {
 				},
 			});
 		}
+		// eslint-disable-next-line
 	}, [publicId, transformations]);
 
 	if (status === 'loading') return <div>Loading...</div>;
