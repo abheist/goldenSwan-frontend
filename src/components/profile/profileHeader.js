@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
 import { Link } from 'react-router-dom';
 import { Flex } from '../styles/Flex';
@@ -7,8 +7,10 @@ import { MeBody2, MeH4 } from '../styles/Typography';
 import Tooltip from '../tooltip/Tooltip';
 import MeButton from '../styles/MeButton';
 import ImageRender from '../imageRender/ImageRender';
+import UserContext from '../../contexts/UserContext';
 
 function ProfileHeader({
+	username,
 	firstname,
 	lastname,
 	bio,
@@ -18,6 +20,7 @@ function ProfileHeader({
 	instagram,
 	linkedin,
 }) {
+	const { username: loggedInUsername } = useContext(UserContext);
 	return (
 		<Flex justify="center" align="center" margin={{ top: 20 }} direction="column">
 			<ImageRender
@@ -81,9 +84,11 @@ function ProfileHeader({
 						</IconButton>
 					</a>
 				</Tooltip>
-				<Link to="edit-profile">
-					<MeButton>Edit profile</MeButton>
-				</Link>
+				{loggedInUsername === username && (
+					<Link to="edit-profile">
+						<MeButton>Edit profile</MeButton>
+					</Link>
+				)}
 			</Flex>
 		</Flex>
 	);
