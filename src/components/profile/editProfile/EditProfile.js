@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React, { useContext, useState, useEffect } from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'styled-icons/feather';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 import UserContext from '../../../contexts/UserContext';
 import { QL_MUTATION_UPDATE_USER, QL_QUERY_PROFILE } from '../../../graphql/users';
 import { Flex, FlexItem } from '../../styles/Flex';
@@ -17,6 +18,7 @@ import ImageRender from '../../imageRender/ImageRender';
 function EditProfile() {
 	const [data, setData] = useState(null);
 	const { username, dispatch } = useContext(UserContext);
+	const history = useHistory();
 
 	const { loading, data: queryData } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
@@ -199,7 +201,7 @@ function EditProfile() {
 							</Flex>
 						</Flex>
 						<Flex justify="flex-end" gapBetween="10">
-							<MeButton type="submit">Cancel</MeButton>
+							<MeButton onClick={() => history.goBack()}>Cancel</MeButton>
 							<MeButton type="submit" kind="primary">
 								Save
 							</MeButton>
