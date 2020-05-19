@@ -38,32 +38,48 @@ function ProfileHeader({
 			</MeBody2>
 			<Flex gapBetween="5" align="center" justify="center">
 				<Tooltip title="Facebook" placement="bottom">
-					<Link to={`https://facebook.com/${facebook}`}>
+					<a
+						href={`https://facebook.com/${facebook}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<IconButton>
 							<Facebook size="16px" />
 						</IconButton>
-					</Link>
+					</a>
 				</Tooltip>
 				<Tooltip title="Twitter" placement="bottom">
-					<Link to={`https://twitter.com/${twitter}`}>
+					<a
+						href={`https://twitter.com/${twitter}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<IconButton>
 							<Twitter size="16px" />
 						</IconButton>
-					</Link>
+					</a>
 				</Tooltip>
 				<Tooltip title="Instagram" placement="bottom">
-					<Link to={`https://instagram.com/${instagram}`}>
+					<a
+						href={`https://instagram.com/${instagram}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<IconButton>
 							<Instagram size="16px" />
 						</IconButton>
-					</Link>
+					</a>
 				</Tooltip>
 				<Tooltip title="Linkedin" placement="bottom">
-					<Link to={`https://linkedin.com/${linkedin}`}>
+					<a
+						href={`https://linkedin.com/${linkedin}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<IconButton>
 							<Linkedin size="16px" />
 						</IconButton>
-					</Link>
+					</a>
 				</Tooltip>
 				<Link to="edit-profile">
 					<MeButton>Edit profile</MeButton>
