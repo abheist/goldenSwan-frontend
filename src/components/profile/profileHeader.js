@@ -74,6 +74,9 @@ function ProfileHeader({
 					</a>
 				</Tooltip>
 				<Tooltip title="Linkedin" placement="bottom">
+					{/* TODO: Here link changes according to the country I think,
+					 * Please take link for linkedin instead of username
+					 */}
 					<a
 						href={`https://linkedin.com/${linkedin}`}
 						target="_blank"
