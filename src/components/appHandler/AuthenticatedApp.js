@@ -16,7 +16,7 @@ function AuthenticatedApp() {
 		<Flex flex="1" justify="center">
 			<div
 				css={`
-					max-width: 800px;
+					width: 600px;
 				`}
 			>
 				<Header />
