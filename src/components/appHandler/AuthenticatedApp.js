@@ -20,8 +20,8 @@ function AuthenticatedApp() {
 				`}
 			>
 				<Header />
-				<Flex justify="center" width="100%">
-					<FlexItem>
+				<Flex width="100%">
+					<FlexItem fill>
 						<Switch>
 							<Route exact path="/">
 								<Home />
