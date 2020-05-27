@@ -41,7 +41,7 @@ function BlogCard({ blog }) {
 				</Link>
 				<div
 					css={`
-						padding: 0 16px 8px;
+						padding: 0 0 8px;
 					`}
 				>
 					<Link to={`/view/${blog.slug}`}>

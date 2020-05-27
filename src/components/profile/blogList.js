@@ -1,16 +1,22 @@
 import * as React from 'react';
+// eslint-disable-next-line no-unused-vars
+import styled from 'styled-components/macro';
 import BlogCard from './blogCard';
-import { Flex, FlexItem } from '../styles/Flex';
 
 function BlogList({ blogs }) {
 	return (
-		<Flex justify="space-between" wrap="wrap" maxWidth="980px">
+		<>
 			{blogs?.map((blog) => (
-				<FlexItem flex="4" minWidth="300px" margin={{ bottom: 40 }} key={blog.slug}>
+				<div
+					css={`
+						margin-bottom: 40px;
+					`}
+					key={blog.slug}
+				>
 					<BlogCard blog={blog} />
-				</FlexItem>
+				</div>
 			))}
-		</Flex>
+		</>
 	);
 }
 

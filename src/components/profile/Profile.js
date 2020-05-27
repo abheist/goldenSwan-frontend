@@ -9,7 +9,6 @@ import { QL_QUERY_PROFILE } from '../../graphql/users';
 function Profile() {
 	const { username } = useParams();
 	const [published, setPublished] = useState([]);
-	const [unPublished, setUnPublished] = useState([]);
 	const { loading, error, data } = useQuery(QL_QUERY_PROFILE, {
 		variables: { username },
 	});
@@ -26,7 +25,6 @@ function Profile() {
 				}
 			}
 			setPublished(localPublished);
-			setUnPublished(localUnPublished);
 		}
 	}, [data]);
 
