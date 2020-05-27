@@ -21,7 +21,7 @@ function AuthenticatedApp() {
 			>
 				<Header />
 				<Flex width="100%">
-					<FlexItem fill>
+					<FlexItem fill="true">
 						<Switch>
 							<Route exact path="/">
 								<Home />
