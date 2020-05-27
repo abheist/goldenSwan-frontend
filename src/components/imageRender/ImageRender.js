@@ -3,7 +3,7 @@ import { useImage } from 'use-cloudinary';
 import ProfilePic from '../profile/profilePic';
 
 function ImageRender({ publicId: propPublicId, transformations }) {
-	const [publicId, setPublicId] = useState(propPublicId);
+	const [publicId] = useState(propPublicId);
 	const [currentImage, setCurrentImage] = useState(null);
 	const { getImage, data, status, error } = useImage({ cloud_name: 'abheist' });
 
@@ -23,7 +23,7 @@ function ImageRender({ publicId: propPublicId, transformations }) {
 		if (currentImage !== data) {
 			setCurrentImage(data);
 		}
-	}, [data]);
+	}, [data, currentImage]);
 
 	if (status === 'loading') return <div>Loading...</div>;
 
