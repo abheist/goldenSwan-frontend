@@ -1,3 +1,22 @@
+# GoldenSwan
+
+Personal blog for humans.
+
+-   User can create his/her profile
+-   Can post unlimited articles
+-   Your published article will be public and unpublished will be private
+-   You can have your username like twitter style
+
+## Development Setup
+
+1. Get the backend server code from this [Repository](https://github.com/abheist/goldenSwan-backend).
+2. Backend installation process is described in that repo's [README](https://github.com/abheist/goldenSwan-backend/) file
+3. Once done, install the node dependencies and get start with it.
+
+```shell
+npm install
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -23,6 +42,7 @@ The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 ### Tech used:
+
 ```
 - React
 - Styled-components
@@ -31,3 +51,16 @@ Your app is ready to be deployed!
 - Apollo-Client
 ...
 ```
+
+[other dependencies](./package.json)
+
+## Contributing
+
+Development of GoldenSwan happens in the open on GitHub, Read below to learn how you can take part in improving GoldenSwan.
+
+-   [Code of Conduct](./CODE_OF_CONDUCT.md)
+-   [Contributing Guide](./CONTRIBUTING.md)
+
+### License
+
+GoldenSwan is [MIT licensed](./LICENSE).
