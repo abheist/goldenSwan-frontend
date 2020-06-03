@@ -1,4 +1,4 @@
-# GoldenSwan
+# GoldenSwan &middot; [![Netlify Status](https://api.netlify.com/api/v1/badges/9ada9554-0f0f-4715-b152-cc20ed575c6c/deploy-status)](https://app.netlify.com/sites/meup/deploys) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Personal blog for humans.
 
