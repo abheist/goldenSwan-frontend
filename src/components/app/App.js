@@ -19,7 +19,10 @@ import Theme from '../styles/Theme';
 import './App.css';
 
 // TODO: add production url when deployed for the first time
-const BASE_URL = process.env.NODE_ENV !== 'production' ? 'http://127.0.0.1:8000/graphql/' : '';
+const BASE_URL =
+	process.env.NODE_ENV !== 'production'
+		? 'http://127.0.0.1:8000/graphql/'
+		: 'https://me-up.herokuapp.com/';
 
 function App() {
 	const httpLink = new HttpLink({
