@@ -22,7 +22,7 @@ import './App.css';
 const BASE_URL =
 	process.env.NODE_ENV !== 'production'
 		? 'http://127.0.0.1:8000/graphql/'
-		: 'https://me-up.herokuapp.com/';
+		: 'https://me-up.herokuapp.com/graphql/';
 
 function App() {
 	const httpLink = new HttpLink({
