@@ -4,7 +4,6 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import MeButton from '../styles/MeButton';
 import { MeTextInput, MeErrorMessage } from '../styles/MeTextInput';
 import {
@@ -24,13 +23,9 @@ import FormGroup from '../styles/FormGroup';
 
 function LoginForm({ setToken }) {
 	const [requestLogin, { data: loginData }] = useMutation(QL_MUTATION_AUTH_TOKEN_WITH_USERNAME);
-
 	const [doVerifyToken, { data: verifyTokenData }] = useMutation(QL_MUTATION_AUTH_TOKEN_VERIFY);
 
 	useEffect(() => {
-		if (!loginData) {
-			toast('Please use correct Username and Password!!!');
-		}
 		if (loginData && loginData?.tokenAuth?.success) {
 			setLocalToken(loginData.tokenAuth.token);
 			setLocalRefreshToken(loginData.tokenAuth.refreshToken);
