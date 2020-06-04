@@ -32,19 +32,6 @@ function LoginSignupPage() {
 					</MeLightH5>
 					<MeLightH6 color={COLOR_LIGHT}>- Sir Richard Branson.</MeLightH6>
 					<Switch>
-						<Route exact path={path}>
-							<img
-								src={selfieImg}
-								alt="MeUp vector showing a persons"
-								css={`
-									width: 32%;
-									max-width: 500px;
-									position: absolute;
-									left: 10%;
-									bottom: 0;
-								`}
-							/>
-						</Route>
 						<Route path="/forgot-password/">
 							<img
 								src={forgotPassword}
@@ -52,6 +39,19 @@ function LoginSignupPage() {
 								css={`
 									width: 50%;
 									max-width: 700px;
+									position: absolute;
+									left: 10%;
+									bottom: 0;
+								`}
+							/>
+						</Route>
+						<Route path={path}>
+							<img
+								src={selfieImg}
+								alt="MeUp vector showing a persons"
+								css={`
+									width: 32%;
+									max-width: 500px;
 									position: absolute;
 									left: 10%;
 									bottom: 0;
@@ -78,11 +78,11 @@ function LoginSignupPage() {
 						`}
 					>
 						<Switch>
-							<Route exact path={path}>
-								<SignUpForm />
-							</Route>
 							<Route path="/forgot-password/">
 								<ForgotPasswordForm />
+							</Route>
+							<Route path={path}>
+								<SignUpForm />
 							</Route>
 						</Switch>
 					</div>
