@@ -5,7 +5,9 @@ const UserContext = React.createContext();
 const initialState = getLocalUsername() || undefined;
 
 const updatedContextAndLocalUsername = (oldState, newState) => {
-	setLocalUsername(newState);
+	if (newState) {
+		setLocalUsername(newState);
+	}
 	return newState;
 };
 

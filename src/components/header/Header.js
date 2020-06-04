@@ -14,7 +14,7 @@ function Header() {
 	const { dispatch } = useContext(UserContext);
 	const logout = () => {
 		logoutUser();
-		dispatch(null);
+		dispatch();
 	};
 
 	return (
