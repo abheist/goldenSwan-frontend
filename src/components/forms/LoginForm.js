@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import * as Yup from 'yup';
 import { useMutation } from '@apollo/client';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MeButton from '../styles/MeButton';
-import { MeTextInput, MeErrorMessage } from '../styles/MeTextInput';
+import * as Yup from 'yup';
+import UserContext from '../../contexts/UserContext';
 import {
-	QL_MUTATION_AUTH_TOKEN_WITH_USERNAME,
 	QL_MUTATION_AUTH_TOKEN_VERIFY,
+	QL_MUTATION_AUTH_TOKEN_WITH_USERNAME,
 } from '../../graphql/mutations/authentication';
-import { Flex, FlexItem } from '../styles/Flex';
 import {
-	setLocalToken,
-	setLocalRefreshToken,
 	setLocalExpTime,
-	getLocalToken,
+	setLocalRefreshToken,
+	setLocalToken,
 	setLocalUsername,
 } from '../../helpers/authService';
-import { MeCaption } from '../styles/Typography';
+import { Flex, FlexItem } from '../styles/Flex';
 import FormGroup from '../styles/FormGroup';
+import MeButton from '../styles/MeButton';
+import { MeErrorMessage, MeTextInput } from '../styles/MeTextInput';
+import { MeCaption } from '../styles/Typography';
 
-function LoginForm({ setToken }) {
+function LoginForm() {
 	const [requestLogin, { data: loginData }] = useMutation(QL_MUTATION_AUTH_TOKEN_WITH_USERNAME);
 	const [doVerifyToken, { data: verifyTokenData }] = useMutation(QL_MUTATION_AUTH_TOKEN_VERIFY);
+	const { dispatch } = useContext(UserContext);
 
 	useEffect(() => {
 		if (loginData && loginData?.tokenAuth?.success) {
@@ -35,15 +35,15 @@ function LoginForm({ setToken }) {
 				},
 			});
 		}
-	}, [loginData, doVerifyToken, setToken]);
+	}, [loginData, doVerifyToken]);
 
 	useEffect(() => {
 		if (verifyTokenData?.verifyToken?.success) {
 			setLocalExpTime(verifyTokenData.verifyToken.payload.exp);
-			setToken(getLocalToken());
 			setLocalUsername(verifyTokenData.verifyToken.payload.username);
+			dispatch(verifyTokenData.verifyToken.payload.username);
 		}
-	}, [verifyTokenData, setToken]);
+	}, [verifyTokenData, dispatch]);
 
 	return (
 		<>
@@ -110,9 +110,5 @@ function LoginForm({ setToken }) {
 		</>
 	);
 }
-
-LoginForm.propTypes = {
-	setToken: PropTypes.func,
-};
 
 export default LoginForm;

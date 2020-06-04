@@ -6,19 +6,19 @@ import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import '../../assets/Inter/inter.css';
+import { UserContextProvider } from '../../contexts/UserContext';
 import {
 	getLocalRefreshToken,
 	getLocalToken,
+	logoutUser,
 	setLocalExpTime,
 	setLocalRefreshToken,
 	setLocalToken,
-	logoutUser,
 } from '../../helpers/authService';
 import AppHandler from '../appHandler/AppHandler';
 import Theme from '../styles/Theme';
 import './App.css';
 
-// TODO: add production url when deployed for the first time
 const BASE_URL =
 	process.env.NODE_ENV !== 'production'
 		? 'http://127.0.0.1:8000/graphql/'
@@ -29,7 +29,7 @@ function App() {
 		uri: BASE_URL,
 	});
 
-	const errorLink = onError(({ graphQLErrors, networkError, operation, response, forward }) => {
+	const errorLink = onError(({ graphQLErrors, operation, response, forward }) => {
 		if (graphQLErrors) {
 			for (const err of graphQLErrors) {
 				if (err.message === 'Signature has expired') {
@@ -89,7 +89,9 @@ function App() {
 			<ApolloProvider client={client}>
 				<Theme>
 					<ToastContainer />
-					<AppHandler />
+					<UserContextProvider>
+						<AppHandler />
+					</UserContextProvider>
 				</Theme>
 			</ApolloProvider>
 		</BrowserRouter>

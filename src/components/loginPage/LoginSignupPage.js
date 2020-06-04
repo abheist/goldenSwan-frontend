@@ -14,7 +14,7 @@ import { COLOR_LIGHT, COLOR_PRIMARY } from '../styles/ThemeConstants';
 import { MeCaption, MeLightH5, MeLightH6 } from '../styles/Typography';
 // eslint-disable-next-line no-unused-vars
 
-function LoginSignupPage(props) {
+function LoginSignupPage() {
 	const { path } = useRouteMatch();
 	return (
 		<Flex fill="true" background={COLOR_LIGHT}>
@@ -69,7 +69,7 @@ function LoginSignupPage(props) {
 						top: 8,
 					}}
 				>
-					<LoginForm {...props} />
+					<LoginForm />
 				</Flex>
 				<Flex justify="center" align="center" height="inherit">
 					<div

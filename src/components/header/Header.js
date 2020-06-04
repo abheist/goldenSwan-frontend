@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Add } from 'styled-icons/material';
 import { LogoutCircleR as Logout } from '@styled-icons/remix-line/LogoutCircleR';
@@ -8,8 +8,15 @@ import Avatar from '../styles/Avatar';
 import Tooltip from '../tooltip/Tooltip';
 import IconButton from '../styles/IconButton';
 import UserContext from '../../contexts/UserContext';
+import { logoutUser } from '../../helpers/authService';
 
 function Header() {
+	const { dispatch } = useContext(UserContext);
+	const logout = () => {
+		logoutUser();
+		dispatch(null);
+	};
+
 	return (
 		<Flex justify="space-between" align="center" width="100%" height="72px">
 			<Link to="/">
@@ -34,13 +41,11 @@ function Header() {
 						)}
 					</UserContext.Consumer>
 				</FlexItem>
-				<Link to="/write">
-					<Tooltip title="Logout">
-						<IconButton>
-							<Logout size="24px" />
-						</IconButton>
-					</Tooltip>
-				</Link>
+				<Tooltip title="Logout">
+					<IconButton type="button" onClick={logout}>
+						<Logout size="24px" />
+					</IconButton>
+				</Tooltip>
 			</Flex>
 		</Flex>
 	);

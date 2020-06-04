@@ -5,7 +5,7 @@ import LoginSignupPage from '../loginPage/LoginSignupPage';
 import EmailVerificationForm from '../forms/EmailVerificationForm';
 import PasswordResetForm from '../forms/PasswordResetForm';
 
-function UnauthenticatedApp(props) {
+function UnauthenticatedApp() {
 	return (
 		<Switch>
 			<Route path="/password-reset/:token">
@@ -15,7 +15,7 @@ function UnauthenticatedApp(props) {
 				<EmailVerificationForm />
 			</Route>
 			<Route path="/">
-				<LoginSignupPage {...props} />
+				<LoginSignupPage />
 			</Route>
 		</Switch>
 	);
