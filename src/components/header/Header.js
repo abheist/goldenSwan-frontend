@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Add } from 'styled-icons/material';
+import { LogoutCircleR as Logout } from '@styled-icons/remix-line/LogoutCircleR';
 import logo from '../../assets/img/logo_dark.png';
 import { Flex, FlexItem } from '../styles/Flex';
 import Avatar from '../styles/Avatar';
@@ -22,7 +23,7 @@ function Header() {
 						</IconButton>
 					</Tooltip>
 				</Link>
-				<FlexItem margin={{ left: 35 }}>
+				<FlexItem margin={{ left: 35, right: 35 }}>
 					<UserContext.Consumer>
 						{({ username }) => (
 							<Link to={`/@${username}`}>
@@ -33,6 +34,13 @@ function Header() {
 						)}
 					</UserContext.Consumer>
 				</FlexItem>
+				<Link to="/write">
+					<Tooltip title="Logout">
+						<IconButton>
+							<Logout size="24px" />
+						</IconButton>
+					</Tooltip>
+				</Link>
 			</Flex>
 		</Flex>
 	);
