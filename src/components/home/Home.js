@@ -65,7 +65,7 @@ function Home() {
 					<MeH4>Unpublished articles:</MeH4>
 					<div>
 						{unPublished.length ? (
-							<BlogList blogs={unPublished} />
+							<BlogList blogs={unPublished} editable />
 						) : (
 							<div>something...</div>
 						)}

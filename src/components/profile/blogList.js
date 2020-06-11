@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components/macro';
 import BlogCard from './blogCard';
 
-function BlogList({ blogs }) {
+function BlogList({ blogs, editable = false }) {
 	return (
 		<>
 			{blogs?.map((blog) => (
@@ -13,7 +13,7 @@ function BlogList({ blogs }) {
 					`}
 					key={blog.slug}
 				>
-					<BlogCard blog={blog} />
+					<BlogCard blog={blog} editable={editable} />
 				</div>
 			))}
 		</>
