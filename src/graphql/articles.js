@@ -33,6 +33,7 @@ export const QL_MUTATION_UPDATE_ARTICLE = gql`
 				title
 				subtitle
 				content
+				published
 			}
 		}
 	}

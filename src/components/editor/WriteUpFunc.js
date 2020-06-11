@@ -4,6 +4,7 @@ import { useMutation } from '@apollo/client';
 import { convertFromRaw, convertToRaw, Editor, EditorState, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import React, { useEffect, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { QL_MUTATION_UPDATE_ARTICLE } from '../../graphql/articles';
 import MeButton from '../styles/MeButton';
 import { MeTextInput } from '../styles/MeTextInput';
@@ -28,6 +29,8 @@ function WriteUpFunc({
 	const [title, setTitle] = useState(articleTitle || '');
 	const [subtitle, setSubtitle] = useState(articleSubTitle || '');
 	const [published, setPublished] = useState(articlePublished || false);
+
+	const history = useHistory();
 
 	const [updateArticle, { data: updatedArticle }] = useMutation(QL_MUTATION_UPDATE_ARTICLE);
 
@@ -55,6 +58,10 @@ function WriteUpFunc({
 						content: JSON.stringify(convertToRaw(currentContent)),
 						published,
 					},
+				}).then((result) => {
+					if (result.data.updateArticle.article.published) {
+						history.push(`/view/${articleSlug}`);
+					}
 				});
 			} else {
 				// console.log('no slug or content');
