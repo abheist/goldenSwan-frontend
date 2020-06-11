@@ -14,8 +14,20 @@ export const QL_MUTATION_CREATE_ARTICLE = gql`
 `;
 
 export const QL_MUTATION_UPDATE_ARTICLE = gql`
-	mutation UpdateArticle($slug: String!, $title: String, $subtitle: String, $content: String) {
-		updateArticle(slug: $slug, title: $title, subtitle: $subtitle, content: $content) {
+	mutation UpdateArticle(
+		$slug: String!
+		$title: String
+		$subtitle: String
+		$content: String
+		$published: Boolean
+	) {
+		updateArticle(
+			slug: $slug
+			title: $title
+			subtitle: $subtitle
+			content: $content
+			published: $published
+		) {
 			article {
 				slug
 				title
